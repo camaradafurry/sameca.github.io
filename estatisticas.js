@@ -1,6 +1,8 @@
 // Substitua 'YOUR_GOOGLE_SHEETS_URL' pelo URL da sua planilha do Google Sheets
+console.log("oi");
 const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqiPwO3bW0bhHm_HWgap3UFSUYTFsDq7Mxy1SAKpWxNUmCKJGCTEEHqGMXQ3fcZZQEXSehpNfrlM1J/pubhtml';
 function init() {
+    console.log("init");
     Tabletop.init({
         key: publicSpreadsheetUrl,
         callback: showInfo,
@@ -10,6 +12,7 @@ function init() {
 
 function showInfo(data, tabletop) {
     // Exemplo de dados no console
+    console.log("show");
     console.log(data);
 
     // Processar os dados conforme necessário para criar os gráficos
