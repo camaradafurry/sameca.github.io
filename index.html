@@ -7,28 +7,35 @@
 <body>
   <canvas id="myChart" width="400" height="400"></canvas>
   <script>
-    const spreadsheetId = "1ZajaGs-4iguGRFmsVXMcN7vpzRh-LyRj9Hdp6Q9PGZ8";
-    const sheetName = "Página1";
+    const spreadsheetId = "1234567890";
+    const sheetName = "Planilha";
 
-    const values = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}`)
-      .then((response) => response.json())
-      .then((data) => data.values);
+    (async () => {
+      const values = await getData(); // Chame a função async aqui
 
-    const ctx = document.getElementById("myChart").getContext("2d");
+      const ctx = document.getElementById("myChart").getContext("2d");
 
-    const chart = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: values[0],
-        datasets: [
-          {
-            data: values[1],
-            fill: false,
-            lineTension: 0.1,
-          },
-        ],
-      },
-    });
+      const chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: values[0],
+          datasets: [
+            {
+              data: values[1],
+              fill: false,
+              lineTension: 0.1,
+            },
+          ],
+        },
+      });
+    })();
+
+    async function getData() {
+      const values = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}`)
+        .then((response) => response.json())
+        .then((data) => data.values);
+      return values;
+    }
   </script>
 </body>
 </html>
