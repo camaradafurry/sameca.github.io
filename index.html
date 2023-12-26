@@ -7,8 +7,8 @@
 <body>
   <canvas id="myChart" width="400" height="400"></canvas>
   <script>
-    const spreadsheetId = "1234567890";
-    const sheetName = "Planilha";
+    const spreadsheetId = "1ZajaGs-4iguGRFmsVXMcN7vpzRh-LyRj9Hdp6Q9PGZ8";
+    const sheetName = "Página1";
 
     const values = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}`)
       .then((response) => response.json())
