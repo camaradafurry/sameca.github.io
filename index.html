@@ -1,29 +1,41 @@
-// ID do arquivo CSV no Google Drive
-const fileId = '13Je9e6F106RJW0MgpzRbWgB-lJF1SEAA';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch CSV from Google Drive</title>
+</head>
+<body>
+  <script>
+    // ID do arquivo CSV no Google Drive
+    const fileId = '13Je9e6F106RJW0MgpzRbWgB-lJF1SEAA';
 
-// URL para exportar o arquivo CSV
-const exportUrl = `https://drive.google.com/uc?id=${fileId}`;
+    // URL para exportar o arquivo CSV
+    const exportUrl = `https://drive.google.com/uc?id=${fileId}`;
 
-// Função para buscar e processar os dados do CSV
-async function fetchAndProcessCSV() {
-  try {
-    // Fetch do arquivo CSV
-    const response = await fetch(exportUrl);
+    // Função para buscar e processar os dados do CSV
+    async function fetchAndProcessCSV() {
+      try {
+        // Fetch do arquivo CSV
+        const response = await fetch(exportUrl);
 
-    // Verifica se a resposta foi bem-sucedida
-    if (!response.ok) {
-      throw new Error('Erro ao buscar o arquivo CSV');
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+          throw new Error('Erro ao buscar o arquivo CSV');
+        }
+
+        // Lê o conteúdo do arquivo CSV como texto
+        const csvContent = await response.text();
+
+        // Processa os dados como desejado
+        console.log(csvContent);
+      } catch (error) {
+        console.error('Erro ao buscar e processar o arquivo CSV:', error);
+      }
     }
 
-    // Lê o conteúdo do arquivo CSV como texto
-    const csvContent = await response.text();
-
-    // Processa os dados como desejado
-    console.log(csvContent);
-  } catch (error) {
-    console.error('Erro ao buscar e processar o arquivo CSV:', error);
-  }
-}
-
-// Chama a função para buscar e processar os dados do CSV
-fetchAndProcessCSV();
+    // Chama a função para buscar e processar os dados do CSV
+    fetchAndProcessCSV();
+  </script>
+</body>
+</html>
