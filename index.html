@@ -1,31 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fetch Google Sheets Data</title>
-</head>
-<body>
-  <script>
-    // URL da planilha Google Sheets
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqiPwO3bW0bhHm_HWgap3UFSUYTFsDq7Mxy1SAKpWxNUmCKJGCTEEHqGMXQ3fcZZQEXSehpNfrlM1J/pubhtml';
+// ID do arquivo CSV no Google Drive
+const fileId = '13Je9e6F106RJW0MgpzRbWgB-lJF1SEAA';
 
-    // Função para buscar dados da planilha
-    async function fetchData() {
-      try {
-        // Fetch dos dados em formato JSON
-        const response = await fetch(`${sheetUrl}?output=json`);
-        const data = await response.json();
+// URL para exportar o arquivo CSV
+const exportUrl = `https://drive.google.com/uc?id=${fileId}`;
 
-        // Manipule os dados conforme necessário
-        console.log(data);
-      } catch (error) {
-        console.error('Erro ao buscar dados da planilha:', error);
-      }
+// Função para buscar e processar os dados do CSV
+async function fetchAndProcessCSV() {
+  try {
+    // Fetch do arquivo CSV
+    const response = await fetch(exportUrl);
+
+    // Verifica se a resposta foi bem-sucedida
+    if (!response.ok) {
+      throw new Error('Erro ao buscar o arquivo CSV');
     }
 
-    // Chame a função para buscar os dados
-    fetchData();
-  </script>
-</body>
-</html>
+    // Lê o conteúdo do arquivo CSV como texto
+    const csvContent = await response.text();
+
+    // Processa os dados como desejado
+    console.log(csvContent);
+  } catch (error) {
+    console.error('Erro ao buscar e processar o arquivo CSV:', error);
+  }
+}
+
+// Chama a função para buscar e processar os dados do CSV
+fetchAndProcessCSV();
