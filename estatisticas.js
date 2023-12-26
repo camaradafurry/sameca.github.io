@@ -1,5 +1,5 @@
 // Substitua 'YOUR_GOOGLE_SHEETS_URL' pelo URL da sua planilha do Google Sheets
-const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1ZajaGs-4iguGRFmsVXMcN7vpzRh-LyRj9Hdp6Q9PGZ8/pubhtml';
+const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqiPwO3bW0bhHm_HWgap3UFSUYTFsDq7Mxy1SAKpWxNUmCKJGCTEEHqGMXQ3fcZZQEXSehpNfrlM1J/pubhtml';
 
 function init() {
     Tabletop.init({
