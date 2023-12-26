@@ -1,17 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
-    <title>Gráficos a partir do Google Sheets</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exibição de Dados da Planilha</title>
+  <!-- Adicione o link para a biblioteca Tabletop.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.6.1/tabletop.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <canvas id="myChart" width="400" height="200"></canvas>
-    </div>
-    <script src="estatisticas.js"></script>
+  <h1>Dados da Planilha</h1>
+  <!-- Container para a tabela -->
+  <div id="table-container"></div>
+
+  <script>
+    // URL público da sua planilha do Google Sheets
+    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqiPwO3bW0bhHm_HWgap3UFSUYTFsDq7Mxy1SAKpWxNUmCKJGCTEEHqGMXQ3fcZZQEXSehpNfrlM1J/pubhtml';
+
+    // Função de retorno de chamada para exibir os dados na tabela
+    function showInfo(data, tabletop) {
+      // Construa a tabela HTML
+      var tableHTML = '<table border="1">';
+      tableHTML += '<tr><th>Coluna 1</th><th>Coluna 2</th><th>Coluna 3</th></tr>';
+
+      // Preencha os dados na tabela
+      data.forEach(function(row) {
+        tableHTML += '<tr>';
+        tableHTML += '<td>' + row.Coluna1 + '</td>';
+        tableHTML += '<td>' + row.Coluna2 + '</td>';
+        tableHTML += '<td>' + row.Coluna3 + '</td>';
+        tableHTML += '</tr>';
+      });
+
+      tableHTML += '</table>';
+
+      // Adicione a tabela ao elemento com o ID "table-container"
+      document.getElementById('table-container').innerHTML = tableHTML;
+    }
+
+    // Inicialize Tabletop.js
+    Tabletop.init({
+      key: publicSpreadsheetUrl,
+      callback: showInfo,
+      simpleSheet: true
+    });
+  </script>
 </body>
 </html>
