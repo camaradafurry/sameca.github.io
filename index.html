@@ -1,47 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exibição de Dados da Planilha</title>
-  <!-- Adicione o link para a biblioteca Tabletop.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.6.1/tabletop.min.js"></script>
+  <title>Gráfico do GitHub</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 </head>
 <body>
-  <h1>Dados da Planilha</h1>
-  <!-- Container para a tabela -->
-  <div id="table-container"></div>
-
+  <canvas id="myChart" width="400" height="400"></canvas>
   <script>
-    // URL público da sua planilha do Google Sheets
-    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqiPwO3bW0bhHm_HWgap3UFSUYTFsDq7Mxy1SAKpWxNUmCKJGCTEEHqGMXQ3fcZZQEXSehpNfrlM1J/pubhtml';
+    const spreadsheetId = "1234567890";
+    const sheetName = "Planilha";
 
-    // Função de retorno de chamada para exibir os dados na tabela
-    function showInfo(data, tabletop) {
-      // Construa a tabela HTML
-      var tableHTML = '<table border="1">';
-      tableHTML += '<tr><th>Coluna 1</th><th>Coluna 2</th><th>Coluna 3</th></tr>';
+    const values = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}`)
+      .then((response) => response.json())
+      .then((data) => data.values);
 
-      // Preencha os dados na tabela
-      data.forEach(function(row) {
-        tableHTML += '<tr>';
-        tableHTML += '<td>' + row.Coluna1 + '</td>';
-        tableHTML += '<td>' + row.Coluna2 + '</td>';
-        tableHTML += '<td>' + row.Coluna3 + '</td>';
-        tableHTML += '</tr>';
-      });
+    const ctx = document.getElementById("myChart").getContext("2d");
 
-      tableHTML += '</table>';
-
-      // Adicione a tabela ao elemento com o ID "table-container"
-      document.getElementById('table-container').innerHTML = tableHTML;
-    }
-
-    // Inicialize Tabletop.js
-    Tabletop.init({
-      key: publicSpreadsheetUrl,
-      callback: showInfo,
-      simpleSheet: true
+    const chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: values[0],
+        datasets: [
+          {
+            data: values[1],
+            fill: false,
+            lineTension: 0.1,
+          },
+        ],
+      },
     });
   </script>
 </body>
