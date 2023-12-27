@@ -3,58 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Charts Example</title>
-    <!-- Adicione o script para carregar a API do Google Charts -->
+    <title>Google Charts com Dados JSON</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        console.log("lá vamos nós 0001");
-        // Carrega a API do Google Charts
-        google.charts.load('current', { packages: ['corechart', 'bar'] });
-        // Configura a função de retorno de chamada para desenhar o gráfico após o carregamento
-        google.charts.setOnLoadCallback(drawBasic);
+</head>
+<body>
+    <div id="chart_div" style="width: 100%; height: 400px;"></div>
 
-        function drawBasic() {
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const url = 'https://sameca.github.io/dados/pacientesMes.json';
+                const dadosJSON = await (await fetch(url)).json();
+
+                // Agora você pode usar a variável dadosJSON no código do gráfico
+                google.charts.load('current', { packages: ['corechart', 'bar'] });
+                google.charts.setOnLoadCallback(() => drawChart(dadosJSON));
+                
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        });
+
+        function drawChart(dados) {
             var data = new google.visualization.DataTable();
-            data.addColumn('timeofday', 'Time of Day');
-            data.addColumn('number', 'Motivation Level');
+            data.addColumn('string', 'Mês');
+            data.addColumn('number', 'Pacientes');
 
-            data.addRows([
-                [{v: [8, 0, 0], f: '8 am'}, 1],
-                [{v: [9, 0, 0], f: '9 am'}, 2],
-                [{v: [10, 0, 0], f: '10 am'}, 3],
-                [{v: [11, 0, 0], f: '11 am'}, 4],
-                [{v: [12, 0, 0], f: '12 pm'}, 5],
-                [{v: [13, 0, 0], f: '1 pm'}, 6],
-                [{v: [14, 0, 0], f: '2 pm'}, 7],
-                [{v: [15, 0, 0], f: '3 pm'}, 8],
-                [{v: [16, 0, 0], f: '4 pm'}, 9],
-                [{v: [17, 0, 0], f: '5 pm'}, 10],
-            ]);
+            data.addRows(dados);
 
             var options = {
-                title: 'Motivation Level Throughout the Day',
+                title: 'Número de Pacientes por Mês',
                 hAxis: {
-                    title: 'Time of Day',
-                    format: 'h:mm a',
-                    viewWindow: {
-                        min: [7, 30, 0],
-                        max: [17, 30, 0]
-                    }
+                    title: 'Mês'
                 },
                 vAxis: {
-                    title: 'Rating (scale of 1-10)'
+                    title: 'Número de Pacientes'
                 }
             };
 
-            var chart = new google.visualization.ColumnChart(
-                document.getElementById('chart_div'));
-
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
             chart.draw(data, options);
         }
     </script>
-</head>
-<body>
-    <!-- Adicione um contêiner para o gráfico -->
-    <div id="chart_div" style="width: 100%; height: 400px;"></div>
 </body>
 </html>
