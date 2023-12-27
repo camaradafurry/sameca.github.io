@@ -7,7 +7,7 @@
       google.charts.setOnLoadCallback(fetchAndDrawStacked);
 
       function fetchAndDrawStacked() {
-        console.log("laudo0007");
+        console.log("laudo0008");
         // Fetch data from the external file
         fetch('dados/pacientesMes.json')
           .then(response => response.json())
@@ -38,7 +38,9 @@
             minValue: 0,
           },
           vAxis: {
-            title: 'Mês'
+            title: 'Mês',
+            // Explicitly specify the axis labels (months)
+            ticks: paciMes.map(row => row[0]).slice(1)
           }
         };
 
