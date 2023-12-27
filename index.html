@@ -3,11 +3,11 @@
     <!-- Load the AJAX API -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', { packages: ['corechart', 'bar'] });
-      google.charts.setOnLoadCallback(fetchAndDrawBarChart);
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(fetchAndDrawColumnChart);
 
-      function fetchAndDrawBarChart() {
-        console.log("laudo0009");
+      function fetchAndDrawColumnChart() {
+        console.log("laudo0011");
         // Fetch data from the external file
         fetch('dados/pacientesMes.json')
           .then(response => response.json())
@@ -16,8 +16,8 @@
             if (Array.isArray(data)) {
               // Add the header to the data
               data.unshift(['Mês', 'Novas entradas de Pacientes']);
-              // Call the drawBarChart function with the loaded data
-              drawBarChart(data);
+              // Call the drawColumnChart function with the loaded data
+              drawColumnChart(data);
             } else {
               console.error('Invalid data format. Expected an array.');
             }
@@ -25,33 +25,31 @@
           .catch(error => console.error('Error fetching data:', error));
       }
 
-      function drawBarChart(paciMes) {
+      function drawColumnChart(paciMes) {
         console.log(JSON.stringify(paciMes));
         var data = google.visualization.arrayToDataTable(paciMes);
 
         var options = {
           title: 'Pacientes por Mês - SAMECA',
           chartArea: { width: '50%', height: '80%' }, // Adjusted height percentage
-          isStacked: false, // Changed to regular bar chart
+          isStacked: false,
           hAxis: {
-            title: 'Pacientes',
-            minValue: 0,
+            title: 'Mês',
           },
           vAxis: {
-            title: 'Mês',
-            // Explicitly specify the axis labels (months)
-            ticks: paciMes.map(row => row[0]).slice(1)
+            title: 'Pacientes',
+            minValue: 0,
           }
         };
 
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
     </script>
   </head>
 
   <body>
-    <!-- Div that will hold the bar chart -->
+    <!-- Div that will hold the column chart -->
     <div id="chart_div"></div>
   </body>
 </html>
