@@ -19,7 +19,7 @@
         .catch(error => console.error('Error fetching data:', error));
 
       function drawStacked(paciMes) {
-        console.log(paciMes);
+        console.log(paciMes.toString());
         var data = google.visualization.arrayToDataTable(paciMes);
 
         var options = {
