@@ -4,10 +4,10 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', { packages: ['corechart', 'bar'] });
-      google.charts.setOnLoadCallback(fetchAndDrawStacked);
+      google.charts.setOnLoadCallback(fetchAndDrawBarChart);
 
-      function fetchAndDrawStacked() {
-        console.log("laudo0008");
+      function fetchAndDrawBarChart() {
+        console.log("laudo0009");
         // Fetch data from the external file
         fetch('dados/pacientesMes.json')
           .then(response => response.json())
@@ -16,8 +16,8 @@
             if (Array.isArray(data)) {
               // Add the header to the data
               data.unshift(['Mês', 'Novas entradas de Pacientes']);
-              // Call the drawStacked function with the loaded data
-              drawStacked(data);
+              // Call the drawBarChart function with the loaded data
+              drawBarChart(data);
             } else {
               console.error('Invalid data format. Expected an array.');
             }
@@ -25,14 +25,14 @@
           .catch(error => console.error('Error fetching data:', error));
       }
 
-      function drawStacked(paciMes) {
+      function drawBarChart(paciMes) {
         console.log(JSON.stringify(paciMes));
         var data = google.visualization.arrayToDataTable(paciMes);
 
         var options = {
           title: 'Pacientes por Mês - SAMECA',
           chartArea: { width: '50%', height: '80%' }, // Adjusted height percentage
-          isStacked: true,
+          isStacked: false, // Changed to regular bar chart
           hAxis: {
             title: 'Pacientes',
             minValue: 0,
