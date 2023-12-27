@@ -12,7 +12,7 @@
         .then(response => response.json())
         .then(data => {
           // Add the header to the data
-          //data.unshift(['Mês', 'Novas entradas de Pacientes']);
+          data.unshift(['Mês', 'Novas entradas de Pacientes']);
           // Call the drawStacked function with the loaded data
           drawStacked(data);
         })
