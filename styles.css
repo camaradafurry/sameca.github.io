@@ -1,7 +1,6 @@
 body {
     margin: 0;
     padding: 0;
-    /*min-width: 500px;*/
 }
 
 header {
@@ -19,15 +18,27 @@ header {
 h1 {
     margin: 0; /* Remove margens padrão do h1 */
 }
+
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+select {
+    width: 150px;
+}
+
 @media only screen and (max-width: 600px) {
     /* Estilos específicos para telas menores que 600 pixels de largura */
     label {
-        width: 100%; /* Defina a largura total para os rótulos em telas menores */
-        text-align: left; /* Alinhe o texto à esquerda para os rótulos em telas menores */
-        margin-right: 0; /* Remova a margem à direita em telas menores */
+        width: 100%;
+        text-align: left;
+        margin-right: 0;
     }
     select {
-        width: 100%; /* Defina a largura total para os selects em telas menores */
-        margin-bottom: 10px; /* Adicione uma margem na parte inferior para espaçamento */
+        width: 100%;
+        margin-bottom: 10px;
     }
 }
