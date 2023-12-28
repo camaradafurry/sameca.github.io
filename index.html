@@ -7,20 +7,12 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-    <label for="startMonth">Mês Inicial:</label>
-    <input type="month" id="startMonth" name="startMonth">
-
-    <label for="endMonth">Mês Final:</label>
-    <input type="month" id="endMonth" name="endMonth">
-
-    <button onclick="logSelectedMonths()">Atualizar Gráfico</button>
-
     <div id="chart_div" style="width: 100%; height: 400px;"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const url = 'dados/pacientesMes.json';
+                const url = 'https://sameca.github.io/dados/pacientesMes.json';
                 const dadosJSON = await (await fetch(url)).json();
 
                 // Agora você pode usar a variável dadosJSON no código do gráfico
@@ -32,25 +24,20 @@
             }
         });
 
-        function logSelectedMonths() {
-            const startMonth = document.getElementById('startMonth').value;
-            const endMonth = document.getElementById('endMonth').value;
-
-            console.log('Mês Inicial:', startMonth);
-            console.log('Mês Final:', endMonth);
-        }
-
         function drawChart(dados) {
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Mês');
+            data.addColumn('string', 'Mês e Ano');
             data.addColumn('number', 'Pacientes');
 
-            data.addRows(dados);
+            // Adiciona os dados ao gráfico
+            dados.forEach(([mesAno, pacientes]) => {
+                data.addRow([mesAno, pacientes]);
+            });
 
             var options = {
-                title: 'Número de Pacientes por Mês',
+                title: 'Número de Pacientes por Mês e Ano',
                 hAxis: {
-                    title: 'Mês'
+                    title: 'Mês e Ano'
                 },
                 vAxis: {
                     title: 'Número de Pacientes'
