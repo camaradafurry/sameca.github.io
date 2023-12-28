@@ -81,7 +81,9 @@
                 if(i==0)return true;
                 else data[0]>=new Date(startYear,startMonth,1)&&data[0]<=new Date(endYear,endMonth,1);
             });
+            console.log(dadosFiltrados);
             drawChart(dadosFiltrados);
+            console.log(dadosFiltrados);
         }
 
         function drawChart(dados) {
