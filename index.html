@@ -80,8 +80,75 @@
         <div id="chart_div" style="width: 100%; height: 500px;"></div>
 
     </section>
+
     <section>
         <h2>Entrada de Psícologos</h2>
+
+        <style>
+            label {
+                display: inline-block;
+                width: 100px; /* Defina a largura desejada para os rótulos */
+                text-align: right; /* Alinhe o texto à direita para os rótulos */
+                margin-right: 10px; /* Adicione uma margem à direita para espaçamento */
+            }
+        
+            select {
+                width: 150px; /* Defina a largura desejada para os selects */
+            }
+        </style>
+        <form onsubmit="event.preventDefault(); atuChart();">
+            <label for="startMonthPsi">Mês Inicial:</label>
+            <select id="startMonthPsi" name="startMonthPsi">
+                <option value="00">Janeiro</option>
+                <option value="01">Fevereiro</option>
+                <option value="02">Março</option>
+                <option value="03">Abril</option>
+                <option value="04">Maio</option>
+                <option value="05">Junho</option>
+                <option value="06">Julho</option>
+                <option value="07">Agosto</option>
+                <option value="08" selected>Setembro</option>
+                <option value="09">Outubro</option>
+                <option value="10">Novembro</option>
+                <option value="11">Dezembro</option>
+            </select>
+
+            <label for="startYearPsi">Ano Inicial:</label>
+            <select id="startYearPsi" name="startYearPsi">
+                <option value="2022" selected>2022</option>
+                <option value="2023">2023</option>
+            </select>
+
+            <br> 
+
+            <label for="endMonthPsi">Mês Final:</label>
+            <select id="endMonthPsi" name="endMonthPsi">
+                <option value="00">Janeiro</option>
+                <option value="01">Fevereiro</option>
+                <option value="02">Março</option>
+                <option value="03">Abril</option>
+                <option value="04">Maio</option>
+                <option value="05">Junho</option>
+                <option value="06">Julho</option>
+                <option value="07">Agosto</option>
+                <option value="08">Setembro</option>
+                <option value="09">Outubro</option>
+                <option value="10">Novembro</option>
+                <option value="11" selected>Dezembro</option>
+            </select>
+
+            <label for="endYearPsi">Ano Final:</label>
+            <select id="endYearPsi" name="endYearPsi">
+                <option value="2022">2022</option>
+                <option value="2023" selected>2023</option>
+            </select>
+
+            <br> 
+
+            <button onclick="atuChartPsi()">Atualizar Gráfico</button>
+        </form>
+
+        <div id="chartPsi_div" style="width: 100%; height: 500px;"></div>
 
     </section>
 
@@ -89,6 +156,7 @@
 
     <script>
         let dados; // Variável global para armazenar os dados
+        let dadosPsi;
 
         document.addEventListener('DOMContentLoaded', async () => {
             try {
@@ -96,6 +164,15 @@
                 dados = await (await fetch(url)).json(); // Salva os dados na variável global
                 google.charts.load('current', { packages: ['corechart', 'bar'] });
                 google.charts.setOnLoadCallback(() => drawChart(dados));
+                
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+            try {
+                const urlPsi = 'dados/psicologosMes.json';
+                dadosPsi = await (await fetch(url)).json(); // Salva os dadosPsi na variável global
+                google.charts.load('current', { packages: ['corechart', 'bar'] });
+                google.charts.setOnLoadCallback(() => drawChartPsi(dadosPsi));
                 
             } catch (error) {
                 console.error('Erro:', error);
@@ -121,6 +198,28 @@
             });
             
             drawChart(dadosFiltrados);
+
+        }
+
+        function atuChartPsi() {
+            const startMonth = document.getElementById('startMonthPsi').value;
+            const endMonth = document.getElementById('endMonthPsi').value;
+            const startYear = document.getElementById('startYearPsi').value;
+            const endYear = document.getElementById('endYearPsi').value;
+
+            console.log('Ano Inicial:', startYear);
+            console.log('Mês Inicial:', startMonth);
+            console.log('Ano Final:', endYear);
+            console.log('Mês Final:', endMonth);
+
+            const dadosFiltrados = dadosPsi.filter((data, i) => {
+                console.log([data[0] , new Date(startYear, startMonth, 1) ]);
+                console.log([data[0] , new Date(endYear, endMonth, 1) ]);
+                return new Date(data[0]) >= new Date(startYear, startMonth, 1) &&
+                new Date(data[0]) <= new Date(endYear, endMonth, 1);
+            });
+            
+            drawChartPsi(dadosFiltrados);
 
         }
 
@@ -150,6 +249,44 @@
                 },
                 vAxis: {
                 title: 'Número de Pacientes',
+                },
+                isStacked: true, // Adiciona esta opção para empilhar as colunas
+                legend: { position: 'top' }
+            };
+
+            let chart = new google.visualization.ColumnChart(document.getElementById('chartPsi_div'));
+            chart.draw(data, options);
+            console.log(dadosGra);
+        }
+
+        
+
+        //fazendo o gráfico
+        function drawChartPsi(dadosPsi) {
+            const dadosGra = dadosPsi.map((par) => {
+                return [mesAno(par[0]), par[1], par[2], par[3]];
+            });
+
+            let data = new google.visualization.DataTable();
+            data.addColumn('string', 'Mês');
+            data.addColumn('number', 'Masculino');
+            data.addColumn('number', 'Feminino');
+            data.addColumn('number', 'Não Binare');
+
+            // Adiciona as linhas aos dados
+            dadosGra.forEach((linha) => {
+                data.addRow([linha[0], linha[1], linha[2], linha[3]]);
+            });
+
+            let options = {
+                title: 'Número de Psícologos por Mês',
+                hAxis: {
+                title: 'Mês',
+                slantedText: true,
+                slantedTextAngle: 45,
+                },
+                vAxis: {
+                title: 'Número de Píscologos',
                 },
                 isStacked: true, // Adiciona esta opção para empilhar as colunas
                 legend: { position: 'top' }
