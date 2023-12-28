@@ -82,7 +82,10 @@
                 else data[0]>=new Date(startYear,startMonth,1)&&data[0]<=new Date(endYear,endMonth,1);
             });
             console.log(dadosFiltrados);
-            await pausa(10000);
+            setTimeout(() => {
+                drawChart(dadosFiltrados);
+                console.log(dadosFiltrados);
+            }, 10000);
             drawChart(dadosFiltrados);
             console.log(dadosFiltrados);
         }
