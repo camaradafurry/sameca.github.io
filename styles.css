@@ -60,6 +60,6 @@ form select {
         margin-bottom: 10px;
     }
 }
-/*#geochart {
-    min-width: 400px; 
-}*/
+#geochart {
+    min-width: 320px; 
+}
