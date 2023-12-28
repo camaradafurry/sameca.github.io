@@ -60,3 +60,7 @@ form select {
         margin-bottom: 10px;
     }
 }
+#geochart {
+    min-width: 300px; /* Largura mínima desejada */
+    min-height: 300px; /* Altura mínima desejada */
+}
