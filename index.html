@@ -82,7 +82,7 @@
                 if (i === 0) return true;
                 else return data[0] >= new Date(startYear, startMonth, 1) && data[0] <= new Date(endYear, endMonth, 1);
             });
-
+            
             drawChart(dadosFiltrados);
         }
 
@@ -105,6 +105,7 @@
 
             var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
             chart.draw(data, options);
+            console.log(dados);
         }
     </script>
 </body>
