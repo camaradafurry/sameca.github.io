@@ -90,11 +90,12 @@
         }
 
         function drawChart(dados) {
+            const dadosGra = dados.map((par)=>{return [mesAno(par[0]),par[1]]});
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Mês');
             data.addColumn('number', 'Pacientes');
 
-            data.addRows(dados);
+            data.addRows(dadosGra);
 
             var options = {
                 title: 'Número de Pacientes por Mês',
@@ -107,8 +108,25 @@
             };
 
             var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-            console.log(dados);
+            chart.draw(dadosGra, options);
+            console.log(dadosGra);
+        }
+        function mesAno(dataString) {
+            const mesesAbreviados = [
+                'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+            ];
+
+            const data = new Date(dataString);
+            
+            if (isNaN(data.getTime())) {
+                return 'Data inválida';
+            }
+
+            const nomeMesAbreviado = mesesAbreviados[data.getMonth()];
+            const ano = data.getFullYear();
+
+            return `${nomeMesAbreviado} ${ano}`;
         }
     </script>
 </body>
