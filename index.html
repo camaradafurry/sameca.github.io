@@ -320,7 +320,7 @@
         //fazendo o gráfico Estados
         function drawChartEst(dadosEst) {
             const dadosGra = dadosEst.map((par) => {
-                return [mesAno(par[0]), par[1]];
+                return [par[0], par[1]];
             });
             dadosGra.unshift(['Estado','Nº Psis']);
             console.log(dadosGra);
