@@ -323,6 +323,7 @@
                 return [mesAno(par[0]), par[1]];
             });
             dadosGra.unshift(['Estado','Nº Psis']);
+            console.log(dadosGra);
             let data = google.visualization.arrayToDataTable(dadosGra);
 
             /*// Adiciona as linhas aos dados
@@ -338,7 +339,7 @@
             };
 
             let chart = new google.visualization.GeoChart(document.getElementById('geochart'));
-            
+
             chart.draw(data, options);
             console.log(dadosGra);
         }
