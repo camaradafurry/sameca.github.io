@@ -26,8 +26,8 @@
             }
         </style>
         <form onsubmit="event.preventDefault(); atuChart();">
-            <label for="startMonth">Mês Inicial:</label>
-            <select id="startMonth" name="startMonth">
+            <label for="startMonthPaci">Mês Inicial:</label>
+            <select id="startMonthPaci" name="startMonthPaci">
                 <option value="00">Janeiro</option>
                 <option value="01">Fevereiro</option>
                 <option value="02">Março</option>
@@ -42,16 +42,16 @@
                 <option value="11">Dezembro</option>
             </select>
 
-            <label for="startYear">Ano Inicial:</label>
-            <select id="startYear" name="startYear">
+            <label for="startYearPaci">Ano Inicial:</label>
+            <select id="startYearPaci" name="startYearPaci">
                 <option value="2022" selected>2022</option>
                 <option value="2023">2023</option>
             </select>
 
             <br> 
 
-            <label for="endMonth">Mês Final:</label>
-            <select id="endMonth" name="endMonth">
+            <label for="endMonthPaci">Mês Final:</label>
+            <select id="endMonthPaci" name="endMonthPaci">
                 <option value="00">Janeiro</option>
                 <option value="01">Fevereiro</option>
                 <option value="02">Março</option>
@@ -66,8 +66,8 @@
                 <option value="11" selected>Dezembro</option>
             </select>
 
-            <label for="endYear">Ano Final:</label>
-            <select id="endYear" name="endYear">
+            <label for="endYearPaci">Ano Final:</label>
+            <select id="endYearPaci" name="endYearPaci">
                 <option value="2022">2022</option>
                 <option value="2023" selected>2023</option>
             </select>
@@ -80,6 +80,13 @@
         <div id="chart_div" style="width: 100%; height: 400px;"></div>
 
     </section>
+    <section>
+        <h2>Entrada de Psícologos</h2>
+
+    </section>
+
+
+
     <script>
         let dados; // Variável global para armazenar os dados
 
@@ -96,21 +103,21 @@
         });
 
         function atuChart() {
-            const startMonth = document.getElementById('startMonth').value;
-            const endMonth = document.getElementById('endMonth').value;
-            const startYear = document.getElementById('startYear').value;
-            const endYear = document.getElementById('endYear').value;
+            const startMonthPaci = document.getElementById('startMonthPaci').value;
+            const endMonthPaci = document.getElementById('endMonthPaci').value;
+            const startYearPaci = document.getElementById('startYearPaci').value;
+            const endYearPaci = document.getElementById('endYearPaci').value;
 
-            console.log('Ano Inicial:', startYear);
-            console.log('Mês Inicial:', startMonth);
-            console.log('Ano Final:', endYear);
-            console.log('Mês Final:', endMonth);
+            console.log('Ano Inicial:', startYearPaci);
+            console.log('Mês Inicial:', startMonthPaci);
+            console.log('Ano Final:', endYearPaci);
+            console.log('Mês Final:', endMonthPaci);
 
             const dadosFiltrados = dados.filter((data, i) => {
-                console.log([data[0] , new Date(startYear, startMonth, 1) ]);
-                console.log([data[0] , new Date(endYear, endMonth, 1) ]);
-                return new Date(data[0]) >= new Date(startYear, startMonth, 1) &&
-                new Date(data[0]) <= new Date(endYear, endMonth, 1);
+                console.log([data[0] , new Date(startYearPaci, startMonthPaci, 1) ]);
+                console.log([data[0] , new Date(endYearPaci, endMonthPaci, 1) ]);
+                return new Date(data[0]) >= new Date(startYearPaci, startMonthPaci, 1) &&
+                new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
             });
             
             drawChart(dadosFiltrados);
