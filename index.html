@@ -96,31 +96,43 @@
             drawChart(dadosFiltrados);
 
         }
-
         function drawChart(dados) {
-            const dadosGra = dados.map((par)=>{return [mesAno(par[0]),par[1]]});
-            var data = new google.visualization.DataTable();
+            const dadosGra = dados.map((par) => {
+                return [mesAno(par[0]), par[1], par[2], par[3]];
+            });
+
+            // Transforma os dados para o formato desejado
+            const dadosTransformados = transformarDados(dadosGra);
+
+            let data = new google.visualization.DataTable();
             data.addColumn('string', 'Mês');
-            data.addColumn('number', 'Pacientes');
+            data.addColumn('number', 'Encaminhados');
+            data.addColumn('number', 'Não Localizados');
+            data.addColumn('number', 'Novos');
 
-            data.addRows(dadosGra);
+            // Adiciona as linhas aos dados
+            dadosTransformados.encaminhados.forEach((linha, index) => {
+                data.addRow([linha.data, linha.value, dadosTransformados.naoLocalizados[index].value, dadosTransformados.novos[index].value]);
+            });
 
-            var options = {
+            let options = {
                 title: 'Número de Pacientes por Mês',
                 hAxis: {
-                    title: 'Mês',
-                    slantedText: true,  
-                    slantedTextAngle: 45  
+                title: 'Mês',
+                slantedText: true,
+                slantedTextAngle: 45,
                 },
                 vAxis: {
-                    title: 'Número de Pacientes'
-                }
+                title: 'Número de Pacientes',
+                },
+                isStacked: true, // Adiciona esta opção para empilhar as colunas
             };
 
-            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            let chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
             chart.draw(data, options);
             console.log(dadosGra);
         }
+
         function mesAno(dataString) {
             const mesesAbreviados = [
                 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
