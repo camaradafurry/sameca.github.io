@@ -168,6 +168,7 @@
     <script>
         let dados; // Variável global para armazenar os dados
         let dadosPsi;
+        let dadosEst;
 
         document.addEventListener('DOMContentLoaded', async () => {
             try {
@@ -184,6 +185,15 @@
                 dadosPsi = await (await fetch(urlPsi)).json(); // Salva os dadosPsi na variável global
                 google.charts.load('current', { packages: ['corechart', 'bar'] });
                 google.charts.setOnLoadCallback(() => drawChartPsi(dadosPsi));
+                
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+            try {
+                const urlEst = 'dados/psicologosEstados.json';
+                dadosEst = await (await fetch(urlEst)).json(); // Salva os dadosPsi na variável global
+                google.charts.load('current', {'packages':['geochart']});
+                google.charts.setOnLoadCallback(() => drawChartEst(dadosEst));
                 
             } catch (error) {
                 console.error('Erro:', error);
@@ -235,37 +245,26 @@
         }
 
         //fazendo o gráfico
-        function drawChart(dados) {
-            const dadosGra = dados.map((par) => {
-                return [mesAno(par[0]), par[1], par[2], par[3]];
+        function drawChart(dadosEst) {
+            const dadosGra = dadosEst.map((par) => {
+                return [mesAno(par[0]), par[1]];
             });
+            dadosGra.unshift(['Estado','Nº Psis']);
+            let data = google.visualization.arrayToDataTable(dadosGra);
 
-            let data = new google.visualization.DataTable();
-            data.addColumn('string', 'Mês');
-            data.addColumn('number', 'Encaminhados');
-            data.addColumn('number', 'Não Localizados');
-            data.addColumn('number', 'Novos');
-
-            // Adiciona as linhas aos dados
+            /*// Adiciona as linhas aos dados
             dadosGra.forEach((linha) => {
                 data.addRow([linha[0], linha[1], linha[2], linha[3]]);
-            });
+            });*/
 
             let options = {
-                title: 'Número de Pacientes por Mês',
-                hAxis: {
-                title: 'Mês',
-                slantedText: true,
-                slantedTextAngle: 45,
-                },
-                vAxis: {
-                title: 'Número de Pacientes',
-                },
-                isStacked: true, // Adiciona esta opção para empilhar as colunas
-                legend: { position: 'top' }
+                region: 'BR', // Código de região para o Brasil
+                resolution: 'provinces', // Exibe os estados brasileiros
+                displayMode: 'regions',
+                colorAxis: {colors: ['lightblue', 'darkblue']}
             };
 
-            let chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            let chart = new google.visualization.ColumnChart(document.getElementById('geochart'));
             chart.draw(data, options);
             console.log(dadosGra);
         }
@@ -274,6 +273,42 @@
 
         //fazendo o gráfico
         function drawChartPsi(dadosPsi) {
+            const dadosGra = dadosPsi.map((par) => {
+                return [mesAno(par[0]), par[1], par[2], par[3]];
+            });
+
+            let data = new google.visualization.DataTable();
+            data.addColumn('string', 'Mês');
+            data.addColumn('number', 'Masculino');
+            data.addColumn('number', 'Feminino');
+            data.addColumn('number', 'Não Binare');
+
+            // Adiciona as linhas aos dados
+            dadosGra.forEach((linha) => {
+                data.addRow([linha[0], linha[1], linha[2], linha[3]]);
+            });
+
+            let options = {
+                title: 'Número de Psícologos por Mês',
+                hAxis: {
+                title: 'Mês',
+                slantedText: true,
+                slantedTextAngle: 45,
+                },
+                vAxis: {
+                title: 'Número de Píscologos',
+                },
+                isStacked: true, // Adiciona esta opção para empilhar as colunas
+                legend: { position: 'top' }
+            };
+
+            let chart = new google.visualization.ColumnChart(document.getElementById('chartPsi_div'));
+            chart.draw(data, options);
+            console.log(dadosGra);
+        }
+
+        /estados
+        function drawChartPsi(dadosEst) {
             const dadosGra = dadosPsi.map((par) => {
                 return [mesAno(par[0]), par[1], par[2], par[3]];
             });
