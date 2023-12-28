@@ -79,12 +79,14 @@
             console.log('Mês Final:', endMonth);
 
             const dadosFiltrados = dados.filter((data, i) => {
+                console.log([data[0] , new Date(startYear, startMonth, 1) ]);
+                console.log([data[0] , new Date(endYear, endMonth, 1) ]);
                 if (i === 0) return true;
                 else return data[0] >= new Date(startYear, startMonth, 1) && data[0] <= new Date(endYear, endMonth, 1);
             });
             
             drawChart(dadosFiltrados);
-            
+
         }
 
         function drawChart(dados) {
