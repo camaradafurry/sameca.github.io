@@ -11,7 +11,18 @@
 
     <p>Número de pacientes que responderam o formulário por mês. O gráfico mostra o total de pacientes que responderam ao formulário, incluindo aqueles que foram encaminhados, não localizados e novos que estão esperando encaminhamento.</p>
 
-
+    <style>
+        label {
+            display: inline-block;
+            width: 100px; /* Defina a largura desejada para os rótulos */
+            text-align: right; /* Alinhe o texto à direita para os rótulos */
+            margin-right: 10px; /* Adicione uma margem à direita para espaçamento */
+        }
+    
+        select {
+            width: 150px; /* Defina a largura desejada para os selects */
+        }
+    </style>
     <form onsubmit="event.preventDefault(); atuChart();">
         <label for="startMonth">Mês Inicial:</label>
         <select id="startMonth" name="startMonth">
