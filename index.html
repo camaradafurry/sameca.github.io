@@ -96,13 +96,11 @@
             drawChart(dadosFiltrados);
 
         }
+
         function drawChart(dados) {
             const dadosGra = dados.map((par) => {
                 return [mesAno(par[0]), par[1], par[2], par[3]];
             });
-
-            // Transforma os dados para o formato desejado
-            const dadosTransformados = transformarDados(dadosGra);
 
             let data = new google.visualization.DataTable();
             data.addColumn('string', 'Mês');
@@ -111,8 +109,8 @@
             data.addColumn('number', 'Novos');
 
             // Adiciona as linhas aos dados
-            dadosTransformados.encaminhados.forEach((linha, index) => {
-                data.addRow([linha.data, linha.value, dadosTransformados.naoLocalizados[index].value, dadosTransformados.novos[index].value]);
+            dadosGra.forEach((linha) => {
+                data.addRow([linha[0], linha[1], linha[2], linha[3]]);
             });
 
             let options = {
