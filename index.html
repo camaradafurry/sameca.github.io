@@ -7,19 +7,47 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-    <label for="startYear">Ano Inicial:</label>
-    <input type="number" id="startYear" name="startYear" min="2022" max="2024">
+    <form onsubmit="coletarMesAno(); return false;">
+        <label for="startMonth">Mês Inicial:</label>
+        <select id="startMonth" name="startMonth">
+            <option value="00">Janeiro</option>
+            <option value="01">Fevereiro</option>
+            <option value="02">Março</option>
+            <option value="03">Abril</option>
+            <option value="04">Maio</option>
+            <option value="05">Junho</option>
+            <option value="06">Julho</option>
+            <option value="07">Agosto</option>
+            <option value="08">Setembro</option>
+            <option value="09">Outubro</option>
+            <option value="10">Novembro</option>
+            <option value="11">Dezembro</option>
+        </select>
 
-    <label for="startMonth">Mês Inicial:</label>
-    <input type="month" id="startMonth" name="startMonth">
+        <label for="startYear">Ano Inicial:</label>
 
-    <label for="endYear">Ano Final:</label>
-    <input type="number" id="endYear" name="endYear" min="2022" max="2024">
+        <label for="endMonth">Mês Final:</label>
+        <select id="endMonth" name="endMonth">
+            <option value="00">Janeiro</option>
+            <option value="01">Fevereiro</option>
+            <option value="02">Março</option>
+            <option value="03">Abril</option>
+            <option value="04">Maio</option>
+            <option value="05">Junho</option>
+            <option value="06">Julho</option>
+            <option value="07">Agosto</option>
+            <option value="08">Setembro</option>
+            <option value="09">Outubro</option>
+            <option value="10">Novembro</option>
+            <option value="11">Dezembro</option>
+        </select>
 
-    <label for="endMonth">Mês Final:</label>
-    <input type="month" id="endMonth" name="endMonth">
+        <label for="endYear">Ano Final:</label>
+        <input type="number" id="endYear" name="endYear" min="2022" max="2023">
 
-    <button onclick="logSelectedMonths()">Atualizar Gráfico</button>
+        <button onclick="logSelectedMonths()">Atualizar Gráfico</button>
+    </form>
+
 
     <div id="chart_div" style="width: 100%; height: 400px;"></div>
 
