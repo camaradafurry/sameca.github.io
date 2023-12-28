@@ -59,7 +59,7 @@
                 const url = 'dados/pacientesMes.json';
                 dados = await (await fetch(url)).json(); // Salva os dados na variável global
                 dados.forEach((element,i) => {
-                    dados[i][0]=new Date(dados[i][0]);
+                    dados[i][0]=new Date(element[0]);
                 });
                 google.charts.load('current', { packages: ['corechart', 'bar'] });
                 google.charts.setOnLoadCallback(() => drawChart(dados));
