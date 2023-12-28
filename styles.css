@@ -30,6 +30,24 @@ select {
     width: 150px;
 }
 
+/* Seu CSS existente ... */
+
+/* Adicione esta regra para garantir que os selects estejam lado a lado */
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Adapte esta regra para os selects específicos dentro do form */
+form select {
+    flex: 1; /* Ocupa a largura disponível */
+    margin-right: 10px; /* Adicione uma margem à direita para espaçamento entre os selects */
+    margin-bottom: 10px; /* Adicione uma margem na parte inferior para espaçamento entre as linhas */
+}
+
+/* Restante do seu CSS ... */
+
+
 @media only screen and (max-width: 600px) {
     /* Estilos específicos para telas menores que 600 pixels de largura */
     label {
