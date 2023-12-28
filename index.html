@@ -170,7 +170,7 @@
             }
             try {
                 const urlPsi = 'dados/psicologosMes.json';
-                dadosPsi = await (await fetch(url)).json(); // Salva os dadosPsi na variável global
+                dadosPsi = await (await fetch(urlPsi)).json(); // Salva os dadosPsi na variável global
                 google.charts.load('current', { packages: ['corechart', 'bar'] });
                 google.charts.setOnLoadCallback(() => drawChartPsi(dadosPsi));
                 
