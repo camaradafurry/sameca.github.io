@@ -7,21 +7,10 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-    <form onsubmit="coletarMesAno(); return false;">
+    <form onsubmit="event.preventDefault(); atuChart();">
         <label for="startMonth">Mês Inicial:</label>
         <select id="startMonth" name="startMonth">
-            <option value="00">Janeiro</option>
-            <option value="01">Fevereiro</option>
-            <option value="02">Março</option>
-            <option value="03">Abril</option>
-            <option value="04">Maio</option>
-            <option value="05">Junho</option>
-            <option value="06">Julho</option>
-            <option value="07">Agosto</option>
-            <option value="08">Setembro</option>
-            <option value="09">Outubro</option>
-            <option value="10">Novembro</option>
-            <option value="11">Dezembro</option>
+            <!-- Opções do mês -->
         </select>
 
         <label for="startYear">Ano Inicial:</label>
@@ -29,18 +18,7 @@
 
         <label for="endMonth">Mês Final:</label>
         <select id="endMonth" name="endMonth">
-            <option value="00">Janeiro</option>
-            <option value="01">Fevereiro</option>
-            <option value="02">Março</option>
-            <option value="03">Abril</option>
-            <option value="04">Maio</option>
-            <option value="05">Junho</option>
-            <option value="06">Julho</option>
-            <option value="07">Agosto</option>
-            <option value="08">Setembro</option>
-            <option value="09">Outubro</option>
-            <option value="10">Novembro</option>
-            <option value="11">Dezembro</option>
+            <!-- Opções do mês -->
         </select>
 
         <label for="endYear">Ano Final:</label>
@@ -49,18 +27,18 @@
         <button onclick="atuChart()">Atualizar Gráfico</button>
     </form>
 
-
     <div id="chart_div" style="width: 100%; height: 400px;"></div>
 
     <script>
+        let dados; // Variável global para armazenar os dados
+
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const url = 'dados/pacientesMes.json';
-                const dadosJSON = await (a2022wait fetch(url)).json();
+                dados = await (await fetch(url)).json(); // Salva os dados na variável global
 
-                // Agora você pode usar a variável dadosJSON no código do gráfico
                 google.charts.load('current', { packages: ['corechart', 'bar'] });
-                google.charts.setOnLoadCallback(() => drawChart(dadosJSON));
+                google.charts.setOnLoadCallback(() => drawChart(dados));
                 
             } catch (error) {
                 console.error('Erro:', error);
@@ -77,10 +55,12 @@
             console.log('Mês Inicial:', startMonth);
             console.log('Ano Final:', endYear);
             console.log('Mês Final:', endMonth);
-            let dadosFiltrados=dados.filter((data,i)=>{
-                if(i==0)return true;
-                else data[0]>=new Date(startYear,startMonth,1)&&data[0]<=new Date(endYear,endMonth,1);
+
+            const dadosFiltrados = dados.filter((data, i) => {
+                if (i === 0) return true;
+                else return data[0] >= new Date(startYear, startMonth, 1) && data[0] <= new Date(endYear, endMonth, 1);
             });
+
             drawChart(dadosFiltrados);
         }
 
