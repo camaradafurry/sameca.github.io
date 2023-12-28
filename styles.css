@@ -61,6 +61,5 @@ form select {
     }
 }
 #geochart {
-    min-width: 300px; /* Largura mínima desejada */
-    min-height: 300px; /* Altura mínima desejada */
+    min-width: 500px; /* Largura mínima desejada */
 }
