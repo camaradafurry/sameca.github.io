@@ -39,7 +39,7 @@ label {
 }
 
 select {
-    width: 150px;
+    width: 75px;
     margin-bottom: 10px; /* Adjust spacing below selects */
 }
 
