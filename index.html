@@ -185,7 +185,9 @@
                 const url = 'dados/pacientesMes.json';
                 dados = await (await fetch(url)).json(); // Salva os dados na variável global
 
-                
+                let totalEnc = 0;
+                let totalNloc = 0;
+                let totalNov = 0;
                 dados.forEach((d)=>{
                     console.log("d: "+d);
                     totalEnc+=parseFloat(d[1]);
@@ -236,10 +238,6 @@
             //console.log('Mês Inicial:', startMonthPaci);
             //console.log('Ano Final:', endYearPaci);
             //console.log('Mês Final:', endMonthPaci);
-
-            let totalEnc = 0;
-            let totalNloc = 0;
-            let totalNov = 0;
             
             const dadosFiltrados = dados.filter((data, i) => {
                 //console.log([data[0] , new Date(startYearPaci, startMonthPaci, 1) ]);
