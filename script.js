@@ -121,6 +121,22 @@ function atuChartPsi() {
         return new Date(data[0]) >= new Date(startYear, startMonth, 1) &&
         new Date(data[0]) <= new Date(endYear, endMonth, 1);
     });
+
+    let totalM = 0;
+    let totalF = 0;
+    let totalNB = 0;
+    dadosPsi.forEach((d)=>{
+        console.log("d: "+d);
+        totalM+=parseFloat(d[1]);
+        totalF+=parseFloat(d[2]);
+        totalNB+=parseFloat(d[3]);
+        console.log(totalNB);                
+    });
+    const totalPsi = totalM+totalF+totalNB;
+    document.getElementById('totalF').textContent = totalF;
+    document.getElementById('totalM').textContent = totalM;
+    document.getElementById('totalNB').textContent = totalNB;
+    document.getElementById('totalPsi').textContent = totalPsi;  
     
     drawChartPsi(dadosFiltrados);
 
