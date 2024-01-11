@@ -1,7 +1,7 @@
 /* Global Styles */
 
 body {
-    margin: 5px;
+    margin: 20px;
     padding: 0;
 }
 
@@ -25,7 +25,7 @@ h1 {
 form {
     max-width: 600px; /* Set a maximum width for the form on larger screens */
     margin: 0 auto; /* Center the form horizontally */
-    padding: 0px; /* Add padding to the form */
+    padding: 20px; /* Add padding to the form */
     box-sizing: border-box; /* Include padding in the total width */
     margin-bottom: 20px; /* Adjust spacing below the form */
 }
@@ -49,21 +49,17 @@ button {
 
 /* Mobile Styles */
 @media only screen and (max-width: 600px) {
-    label {
-        display: block;
-        width: 100%;
-        text-align: left;
-        margin-bottom: 5px; /* Adjust spacing below labels on mobile */
+    header {
+        flex-direction: column; /* Altera a direção do flex container para coluna */
+        align-items: center; /* Centraliza os itens na coluna */
     }
 
-    select {
-        width: 100%;
-        margin-bottom: 10px; /* Adjust spacing below selects on mobile */
+    .logo-container {
+        margin-bottom: 10px; /* Adiciona margem abaixo do contêiner de logotipo */
     }
 
-    button {
-        width: 100%;
-        margin-top: 10px; /* Adjust spacing above the button on mobile */
+    h1 {
+        margin-top: 10px; /* Adiciona margem acima do título */
     }
 }
 
