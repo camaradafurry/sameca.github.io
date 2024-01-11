@@ -98,10 +98,6 @@ function atuChart() {
     document.getElementById('totalNloc').textContent = totalNloc;
     document.getElementById('totalNov').textContent = totalNov;
     document.getElementById('totalPaci').textContent = totalPaci;*/
-
-    
-    google.charts.load('current', { packages: ['corechart', 'bar'] });
-    google.charts.setOnLoadCallback(() => drawChart(dados));
               
     drawChart(dadosFiltrados);
 
