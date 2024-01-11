@@ -84,9 +84,9 @@ function atuChart() {
         return new Date(data[0]) >= new Date(startYearPaci, startMonthPaci, 1) &&
         new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
     });
-    /*totalEnc = 0;
-    totalNloc = 0;
-    totalNov = 0;
+    let totalEnc = 0;
+    let totalNloc = 0;
+    let totalNov = 0;
     dadosFiltrados.forEach((d)=>{
         console.log("d: "+d);
         totalEnc+=parseFloat(d[1]);
@@ -98,7 +98,7 @@ function atuChart() {
     document.getElementById('totalEnc').textContent = totalEnc;
     document.getElementById('totalNloc').textContent = totalNloc;
     document.getElementById('totalNov').textContent = totalNov;
-    document.getElementById('totalPaci').textContent = totalPaci;*/
+    document.getElementById('totalPaci').textContent = totalPaci;
               
     drawChart(dadosFiltrados);
 
