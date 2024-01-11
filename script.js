@@ -79,8 +79,8 @@ function atuChart() {
     console.log('Mês Final:', endMonthPaci);
     
     const dadosFiltrados = dados.filter((data, i) => {
-        console.log([data[0] , new Date(startYearPaci, startMonthPaci, 1) ]);
-        console.log([data[0] , new Date(endYearPaci, endMonthPaci, 1) ]);
+        //console.log([data[0] , new Date(startYearPaci, startMonthPaci, 1) ]);
+        //console.log([data[0] , new Date(endYearPaci, endMonthPaci, 1) ]);
         return new Date(data[0]) >= new Date(startYearPaci, startMonthPaci, 1) &&
         new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
     });
@@ -100,7 +100,8 @@ function atuChart() {
     document.getElementById('totalNov').textContent = totalNov;
     document.getElementById('totalPaci').textContent = totalPaci;
               
-    drawChart(dadosFiltrados);
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+     google.charts.setOnLoadCallback(() => drawChart(dadosFiltrados);
 
 }
 
