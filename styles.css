@@ -39,7 +39,7 @@ label {
 }
 
 select {
-    width: 75px;
+    width: 75px; /* Set the width to half of the original size */
     margin-bottom: 10px; /* Adjust spacing below selects */
 }
 
