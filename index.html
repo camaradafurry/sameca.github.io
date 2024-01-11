@@ -184,6 +184,21 @@
             try {
                 const url = 'dados/pacientesMes.json';
                 dados = await (await fetch(url)).json(); // Salva os dados na variável global
+
+                
+                dados.forEach((d)=>{
+                console.log("d: "+d);
+                totalEnc+=d[0];
+                totalNloc+=d[1];
+                totalNov+=d[2];
+                });
+                const totalPaci = totalEnc+totalNloc+totalNov;
+                document.getElementById('totalEnc').textContent = totalEnc;
+                document.getElementById('totalNloc').textContent = totalNloc;
+                document.getElementById('totalNov').textContent = totalNov;
+                document.getElementById('totalPaci').textContent = totalPaci;
+
+                
                 google.charts.load('current', { packages: ['corechart', 'bar'] });
                 google.charts.setOnLoadCallback(() => drawChart(dados));
                 
@@ -216,30 +231,18 @@
             const startYearPaci = document.getElementById('startYearPaci').value;
             const endYearPaci = document.getElementById('endYearPaci').value;
 
-            console.log('Ano Inicial:', startYearPaci);
-            console.log('Mês Inicial:', startMonthPaci);
-            console.log('Ano Final:', endYearPaci);
-            console.log('Mês Final:', endMonthPaci);
+            //console.log('Ano Inicial:', startYearPaci);
+            //console.log('Mês Inicial:', startMonthPaci);
+            //console.log('Ano Final:', endYearPaci);
+            //console.log('Mês Final:', endMonthPaci);
 
             let totalEnc = 0;
             let totalNloc = 0;
             let totalNov = 0;
-
-            dados.forEach((d)=>{
-                console.log("d: "+d);
-                totalEnc+=d[0];
-                totalNloc+=d[1];
-                totalNov+=d[2];
-            });
-            const totalPaci = totalEnc+totalNloc+totalNov;
-            document.getElementById('totalEnc').textContent = totalEnc;
-            document.getElementById('totalNloc').textContent = totalNloc;
-            document.getElementById('totalNov').textContent = totalNov;
-            document.getElementById('totalPaci').textContent = totalPaci;
             
             const dadosFiltrados = dados.filter((data, i) => {
-                console.log([data[0] , new Date(startYearPaci, startMonthPaci, 1) ]);
-                console.log([data[0] , new Date(endYearPaci, endMonthPaci, 1) ]);
+                //console.log([data[0] , new Date(startYearPaci, startMonthPaci, 1) ]);
+                //console.log([data[0] , new Date(endYearPaci, endMonthPaci, 1) ]);
                 return new Date(data[0]) >= new Date(startYearPaci, startMonthPaci, 1) &&
                 new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
             });
@@ -254,14 +257,14 @@
             const startYear = document.getElementById('startYearPsi').value;
             const endYear = document.getElementById('endYearPsi').value;
 
-            console.log('Ano Inicial:', startYear);
-            console.log('Mês Inicial:', startMonth);
-            console.log('Ano Final:', endYear);
-            console.log('Mês Final:', endMonth);
+            //console.log('Ano Inicial:', startYear);
+            //console.log('Mês Inicial:', startMonth);
+            //console.log('Ano Final:', endYear);
+            //console.log('Mês Final:', endMonth);
 
             const dadosFiltrados = dadosPsi.filter((data, i) => {
-                console.log([data[0] , new Date(startYear, startMonth, 1) ]);
-                console.log([data[0] , new Date(endYear, endMonth, 1) ]);
+                //console.log([data[0] , new Date(startYear, startMonth, 1) ]);
+                //console.log([data[0] , new Date(endYear, endMonth, 1) ]);
                 return new Date(data[0]) >= new Date(startYear, startMonth, 1) &&
                 new Date(data[0]) <= new Date(endYear, endMonth, 1);
             });
@@ -303,7 +306,7 @@
 
             let chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
             chart.draw(data, options);
-            console.log(dadosGra);
+            //console.log(dadosGra);
         }
 
         
@@ -341,7 +344,7 @@
 
             let chart = new google.visualization.ColumnChart(document.getElementById('chartPsi_div'));
             chart.draw(data, options);
-            console.log(dadosGra);
+            //console.log(dadosGra);
         }
 
         //fazendo o gráfico Estados
@@ -350,7 +353,7 @@
                 return ["BR-"+par[0], par[1]];
             });
             dadosGra.unshift(['Estado','Nº Psis']);
-            console.log(dadosGra);
+            //console.log(dadosGra);
             let data = google.visualization.arrayToDataTable(dadosGra);
 
             /*// Adiciona as linhas aos dados
@@ -368,7 +371,7 @@
             let chart = new google.visualization.GeoChart(document.getElementById('geochart'));
 
             chart.draw(data, options);
-            console.log(dadosGra);
+            //console.log(dadosGra);
         }
 
         function mesAno(dataString) {
