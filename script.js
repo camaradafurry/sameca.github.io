@@ -126,7 +126,7 @@ function atuChartPsi() {
 }
 
 //fazendo o gráfico
-function drawChart(dados) {
+function drawChart(dadosFiltrados) {
     const dadosGra = dados.map((par) => {
         return [mesAno(par[0]), par[1], par[2], par[3]];
     });
