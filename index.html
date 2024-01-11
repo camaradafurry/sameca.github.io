@@ -188,9 +188,9 @@
                 
                 dados.forEach((d)=>{
                 console.log("d: "+d);
-                totalEnc+=d[0];
-                totalNloc+=d[1];
-                totalNov+=d[2];
+                totalEnc+=parsefloat(d[1]);
+                totalNloc+=parsefloat(d[2]);
+                totalNov+=parsefloat(d[3]);
                 });
                 const totalPaci = totalEnc+totalNloc+totalNov;
                 document.getElementById('totalEnc').textContent = totalEnc;
