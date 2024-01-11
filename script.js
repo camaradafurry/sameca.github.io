@@ -125,7 +125,7 @@ function atuChartPsi() {
     let totalM = 0;
     let totalF = 0;
     let totalNB = 0;
-    dadosPsi.forEach((d)=>{
+    dadosFiltrados.forEach((d)=>{
         console.log("d: "+d);
         totalM+=parseFloat(d[1]);
         totalF+=parseFloat(d[2]);
