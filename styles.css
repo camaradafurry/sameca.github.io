@@ -16,7 +16,7 @@ header {
 }
 
 h1 {
-    margin: 0; /* Remove margens padrão do h1 */
+    margin: 0px; /* Remove margens padrão do h1 */
 }
 
 label {
