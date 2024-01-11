@@ -83,9 +83,9 @@ function atuChart() {
         return new Date(data[0]) >= new Date(startYearPaci, startMonthPaci, 1) &&
         new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
     });
-    let totalEnc = 0;
-    let totalNloc = 0;
-    let totalNov = 0;
+    totalEnc = 0;
+    totalNloc = 0;
+    totalNov = 0;
     dados.forEach((d)=>{
         console.log("d: "+d);
         totalEnc+=parseFloat(d[1]);
