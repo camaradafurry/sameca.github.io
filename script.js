@@ -72,14 +72,14 @@ function atuChart() {
     const startYearPaci = document.getElementById('startYearPaci').value;
     const endYearPaci = document.getElementById('endYearPaci').value;
 
-    //console.log('Ano Inicial:', startYearPaci);
-    //console.log('Mês Inicial:', startMonthPaci);
-    //console.log('Ano Final:', endYearPaci);
-    //console.log('Mês Final:', endMonthPaci);
+    console.log('Ano Inicial:', startYearPaci);
+    console.log('Mês Inicial:', startMonthPaci);
+    console.log('Ano Final:', endYearPaci);
+    console.log('Mês Final:', endMonthPaci);
     
     const dadosFiltrados = dados.filter((data, i) => {
-        //console.log([data[0] , new Date(startYearPaci, startMonthPaci, 1) ]);
-        //console.log([data[0] , new Date(endYearPaci, endMonthPaci, 1) ]);
+        console.log([data[0] , new Date(startYearPaci, startMonthPaci, 1) ]);
+        console.log([data[0] , new Date(endYearPaci, endMonthPaci, 1) ]);
         return new Date(data[0]) >= new Date(startYearPaci, startMonthPaci, 1) &&
         new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
     });
