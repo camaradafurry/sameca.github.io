@@ -211,6 +211,23 @@
             try {
                 const urlPsi = 'dados/psicologosMes.json';
                 dadosPsi = await (await fetch(urlPsi)).json(); // Salva os dadosPsi na variável global
+
+                let totalM = 0;
+                let totalF = 0;
+                let totalNB = 0;
+                dadosPsi.forEach((d)=>{
+                    console.log("d: "+d);
+                    totalM+=parseFloat(d[1]);
+                    totalF+=parseFloat(d[2]);
+                    totalNB+=parseFloat(d[3]);
+                    console.log(totalM);                
+                });
+                const totalPsi = totalM+totalF+totalNB;
+                document.getElementById('totalF').textContent = totalF;
+                document.getElementById('totalM').textContent = totalM;
+                document.getElementById('totalNB').textContent = totalNB;
+                document.getElementById('totalPsi').textContent = totalPsi;                
+                
                 google.charts.load('current', { packages: ['corechart', 'bar'] });
                 google.charts.setOnLoadCallback(() => drawChartPsi(dadosPsi));
                 
