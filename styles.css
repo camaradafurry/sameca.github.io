@@ -25,7 +25,7 @@ h1 {
 form {
     max-width: 600px; /* Set a maximum width for the form on larger screens */
     margin: 0 auto; /* Center the form horizontally */
-    padding: 20px; /* Add padding to the form */
+    padding: 0px; /* Add padding to the form */
     box-sizing: border-box; /* Include padding in the total width */
     margin-bottom: 20px; /* Adjust spacing below the form */
 }
