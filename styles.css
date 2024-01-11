@@ -1,3 +1,5 @@
+/* Global Styles */
+
 body {
     margin: 20px;
     padding: 0;
@@ -7,7 +9,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px;
+    padding: 20px;
     background-color: #f0f0f0; /* Cor de fundo do cabeçalho (opcional) */
 }
 
@@ -16,7 +18,16 @@ header {
 }
 
 h1 {
-    margin: 0px; /* Remove margens padrão do h1 */
+    margin: 20px; /* Remove margens padrão do h1 */
+}
+
+/* Form Styles */
+form {
+    max-width: 600px; /* Set a maximum width for the form on larger screens */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px; /* Add padding to the form */
+    box-sizing: border-box; /* Include padding in the total width */
+    margin-bottom: 20px; /* Adjust spacing below the form */
 }
 
 label {
@@ -24,13 +35,40 @@ label {
     width: 100px;
     text-align: right;
     margin-right: 10px;
+    margin-bottom: 10px; /* Adjust spacing below labels */
 }
 
 select {
     width: 150px;
+    margin-bottom: 10px; /* Adjust spacing below selects */
 }
 
-/* Seu CSS existente ... */
+button {
+    margin-top: 10px; /* Adjust spacing above the button */
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 600px) {
+    label {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px; /* Adjust spacing below labels on mobile */
+    }
+
+    select {
+        width: 100%;
+        margin-bottom: 10px; /* Adjust spacing below selects on mobile */
+    }
+
+    button {
+        width: 100%;
+        margin-top: 10px; /* Adjust spacing above the button on mobile */
+    }
+}
+
+/* ... (rest of your existing styles) */
+
 #geochart {
-    min-width: 400px; 
+    min-width: 400px;
 }
