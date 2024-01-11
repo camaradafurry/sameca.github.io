@@ -83,6 +83,25 @@ function atuChart() {
         return new Date(data[0]) >= new Date(startYearPaci, startMonthPaci, 1) &&
         new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
     });
+    let totalEnc = 0;
+    let totalNloc = 0;
+    let totalNov = 0;
+    dados.forEach((d)=>{
+        console.log("d: "+d);
+        totalEnc+=parseFloat(d[1]);
+        totalNloc+=parseFloat(d[2]);
+        totalNov+=parseFloat(d[3]);
+        console.log(totalEnc);                
+    });
+    const totalPaci = totalEnc+totalNloc+totalNov;
+    document.getElementById('totalEnc').textContent = totalEnc;
+    document.getElementById('totalNloc').textContent = totalNloc;
+    document.getElementById('totalNov').textContent = totalNov;
+    document.getElementById('totalPaci').textContent = totalPaci;
+
+    
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(() => drawChart(dados));
               
     drawChart(dadosFiltrados);
 
