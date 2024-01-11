@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function atuChart() {
+    console.log("oi");
     const startMonthPaci = document.getElementById('startMonthPaci').value;
     const endMonthPaci = document.getElementById('endMonthPaci').value;
     const startYearPaci = document.getElementById('startYearPaci').value;
