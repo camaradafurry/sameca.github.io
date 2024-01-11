@@ -1,7 +1,6 @@
 /* Global Styles */
-
 body {
-    margin: 5px; /* Alterado para 5px */
+    margin: 5px;
     padding: 0;
 }
 
@@ -10,21 +9,20 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0;
-    background-color: #f0f0f0; /* Cor de fundo do cabeçalho (opcional) */
+    background-color: #f0f0f0;
 }
 
 .logo-container img {
-    max-height: 60px; /* Ajuste a altura conforme necessário */
+    max-height: 60px;
 }
 
 h1 {
-    margin: 0; /* Remove margens padrão do h1 */
+    margin: 0;
 }
 
 /* Form Styles */
 form {
     max-width: 600px;
-    /*margin: 0 auto;*/
     padding: 20px;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -62,9 +60,15 @@ button {
     h1 {
         margin-top: 10px;
     }
-}
 
-/* ... (rest of your existing styles) */
+    #chart_div,
+    #chartPsi_div,
+    #geochart {
+        min-width: unset;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
 
 #geochart {
     min-width: 400px;
