@@ -101,7 +101,7 @@ function atuChart() {
     document.getElementById('totalPaci').textContent = totalPaci;
               
     google.charts.load('current', { packages: ['corechart', 'bar'] });
-     google.charts.setOnLoadCallback(() => drawChart(dadosFiltrados);
+    google.charts.setOnLoadCallback(() => drawChart(dadosFiltrados);
 
 }
 
