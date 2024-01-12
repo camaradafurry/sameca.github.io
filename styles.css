@@ -73,3 +73,14 @@ button {
 #geochart {
     min-width: 400px;
 }
+
+#contador-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff; /* Cor de fundo do contador */
+            text-align: center;
+            padding: 10px; /* Ajuste o espaçamento conforme necessário */
+            border-top: 1px solid #000000; /* Adiciona uma borda superior para separar do conteúdo */
+        }
