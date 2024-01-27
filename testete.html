@@ -3,22 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Page</title>
+  <title>Minha Página</title>
 </head>
 <body>
   <h1>Dado do Banco de Dados:</h1>
   <div id="dados-container"></div>
 
   <script>
-    // Use o fetch para obter o dado do backend
-    fetch('http://localhost:3000/obter-dado')
-      .then(response => response.text())
-      .then(dado => {
-        document.getElementById('dados-container').innerText = dado;
-      })
-      .catch(error => {
-        console.error('Erro ao obter dado:', error);
-      });
+    document.addEventListener('DOMContentLoaded', function () {
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+      const apiUrl = 'http://localhost:3000/obter-dado';
+
+      fetch(proxyUrl + apiUrl)
+        .then(response => response.text())
+        .then(dado => {
+          document.getElementById('dados-container').innerText = dado;
+        })
+        .catch(error => {
+          console.error('Erro ao obter dado:', error);
+        });
+    });
   </script>
 </body>
 </html>
