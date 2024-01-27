@@ -1,10 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Page</title>
 </head>
-
 <body>
-<p>Oi</p>
+  <h1>Dado do Banco de Dados:</h1>
+  <div id="dados-container"></div>
 
+  <script>
+    // Use o fetch para obter o dado do backend
+    fetch('http://localhost:3000/obter-dado')
+      .then(response => response.text())
+      .then(dado => {
+        document.getElementById('dados-container').innerText = dado;
+      })
+      .catch(error => {
+        console.error('Erro ao obter dado:', error);
+      });
+  </script>
 </body>
 </html>
