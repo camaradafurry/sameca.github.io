@@ -85,19 +85,31 @@ function atuChart() {
         new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
     });
     let totalEnc = 0;
-    let totalNloc = 0;
-    let totalNov = 0;
+    let totalCont = 0;
+    let totalAte = 0;
+    let totalSusp=0;
+    let totalConcl=0;
+    let totalNL=0;
+    let totalNovos=0
     dadosFiltrados.forEach((d)=>{
         console.log("d: "+d);
         totalEnc+=parseFloat(d[1]);
-        totalNloc+=parseFloat(d[2]);
-        totalNov+=parseFloat(d[3]);
+        totalCont+=parseFloat(d[2]);
+        totalAte+=parseFloat(d[3]);
+        totalSusp+=parseFloat(d[4]);
+        totalConcl+=parseFloat(d[5]);
+        totalNL+=parseFloat(d[6]);
+        totalNovos+=parseFloat(d[7]);
         console.log(totalEnc);                
     });
-    const totalPaci = totalEnc+totalNloc+totalNov;
     document.getElementById('totalEnc').textContent = totalEnc;
-    document.getElementById('totalNloc').textContent = totalNloc;
-    document.getElementById('totalNov').textContent = totalNov;
+    document.getElementById('totalCont').textContent = totalCont;
+    document.getElementById('totalAte').textContent = totalAte;
+    document.getElementById('totalSusp').textContent = totalSusp;
+    document.getElementById('totalConcl').textContent = totalConcl;
+    document.getElementById('totalNL').textContent = totalNL;
+    document.getElementById('totalNovos').textContent = totalNovos;
+    const totalPaci = totalEnc + totalCont + totalAte + totalSusp + totalConcl + totalNL + totalNovos;
     document.getElementById('totalPaci').textContent = totalPaci;
               
     drawChart(dadosFiltrados);
