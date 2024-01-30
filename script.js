@@ -154,7 +154,7 @@ function drawChart(dadosFiltrados) {
     data.addColumn('number', 'Em Contato');
     data.addColumn('number', 'Em Atendimento');
     data.addColumn('number', 'Em Suspenso');
-    data.addColumn('number', 'Concluído');
+    data.addColumn('number', 'Concluídos');
     data.addColumn('number', 'Não Localizados');
     data.addColumn('number', 'Novos');
 
