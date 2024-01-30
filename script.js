@@ -151,6 +151,10 @@ function drawChart(dadosFiltrados) {
     let data = new google.visualization.DataTable();
     data.addColumn('string', 'Mês');
     data.addColumn('number', 'Encaminhados');
+    data.addColumn('number', 'Em Contato');
+    data.addColumn('number', 'Em Atendimento');
+    data.addColumn('number', 'Em Suspenso');
+    data.addColumn('number', 'Concluído');
     data.addColumn('number', 'Não Localizados');
     data.addColumn('number', 'Novos');
 
