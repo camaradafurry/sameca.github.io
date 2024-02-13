@@ -26,7 +26,7 @@
         });
   
         // Processar a resposta JSON
-        const result = await response;
+        const result = await JSON.stringify(response);
   
         // Exibir o resultado no console
         console.log(result); // Acesse a propriedade 'username' da resposta
