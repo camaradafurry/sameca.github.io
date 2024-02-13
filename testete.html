@@ -11,25 +11,30 @@
   <button id="btn-lambda">Chamar Lambda</button>
 
   <script>
-    const btnLambda = document.getElementById('btn-lambda');//
-    let response="nada";
+    const btnLambda = document.getElementById('btn-lambda');
+    let response = "nada";
+
     btnLambda.addEventListener('click', async () => {
       try {
-
         // Chamada à API Lambda
         response = await fetch('https://tssvso6yoq3rw6bhppn63agnae0dbsqw.lambda-url.us-east-2.on.aws/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({"id": "1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4"}),  // Converte o objeto para uma string JSON
+          body: JSON.stringify({"id": "1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4"}),
         });
 
+        console.log(response); // Log após a chamada assíncrona
       } catch (error) {
         console.error('Erro durante a chamada assíncrona:', error);
       }
     });
-    console.log(response); //
+
+    // Adicione um event listener para o evento load da página para exibir o log inicial
+    window.addEventListener('load', () => {
+      console.log(response); // Log inicial
+    });
   </script>
 </body>
 </html>
