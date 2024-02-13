@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minha Página</title>
+  <title>Chamando função Lambda</title>
 </head>
 <body>
-  <h1>Dado do Banco de Dados:</h1>
-  <div id="dados-container"></div>
+  <h1>Chamando função Lambda</h1>
+  <p>Clique no botão para chamar a função Lambda:</p>
+  <button id="btn-lambda">Chamar Lambda</button>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-      const apiUrl = 'http://localhost:3000/obter-dado';
+    const btnLambda = document.getElementById('btn-lambda');
 
-      fetch(proxyUrl + apiUrl)
-        .then(response => response.text())
-        .then(dado => {
-          document.getElementById('dados-container').innerText = dado;//
-        })
-        .catch(error => {
-          console.error('Erro ao obter dado:', error);
-        });
+    btnLambda.addEventListener('click', async () => {
+      // Obtém o ID da página do GitHub
+      const pageId = '1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4';
+      // Chamada à API Lambda
+      const response = await fetch('https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/pegaouser/invoke', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pageId,
+        }),
+      });
+
+      // Tratamento da resposta
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Dados da função Lambda:', data);
+        // Exiba os dados da função Lambda na página
+      } else {
+        console.error('Erro ao chamar a função Lambda:', response.statusText);
+      }
     });
   </script>
 </body>
