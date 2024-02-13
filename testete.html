@@ -23,10 +23,7 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          // Certifique-se de que 'pageID' é um valor válido e não nulo.
-          'id': pageID,
-        }),
+        body: {'id': pageID,}
         // 'no-cors' pode ser necessário para alguns ambientes, mas configure com cuidado.
         mode: 'no-cors',
         cache: 'no-cache',
