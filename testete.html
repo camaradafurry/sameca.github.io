@@ -13,7 +13,7 @@
   <script>
     const btnLambda = document.getElementById('btn-lambda');
     let response = "nada";
-
+  
     btnLambda.addEventListener('click', async () => {
       try {
         // Chamada à API Lambda
@@ -24,18 +24,17 @@
           },
           body: JSON.stringify({"id": "1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4"}),
         });
-
-        console.log(response); // Log após a chamada assíncrona
+  
+        // Processar a resposta JSON
+        const result = await response.json();
+  
+        // Exibir o resultado no console
+        console.log(result.username); // Acesse a propriedade 'username' da resposta
       } catch (error) {
         console.error('Erro durante a chamada assíncrona:', error);
       }
-      console.log("no fim: "+JSON.stringify(response));
-    });
-
-    // Adicione um event listener para o evento load da página para exibir o log inicial
-    window.addEventListener('load', () => {
-      console.log(response); // Log inicial
     });
   </script>
+  
 </body>
 </html>
