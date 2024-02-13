@@ -12,12 +12,12 @@
 
   <script>
     const btnLambda = document.getElementById('btn-lambda');//
-
+    let response;
     btnLambda.addEventListener('click', async () => {
       try {
 
         // Chamada à API Lambda
-        const response = await fetch('https://tssvso6yoq3rw6bhppn63agnae0dbsqw.lambda-url.us-east-2.on.aws/', {
+        response = await fetch('https://tssvso6yoq3rw6bhppn63agnae0dbsqw.lambda-url.us-east-2.on.aws/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
