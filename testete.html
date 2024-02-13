@@ -15,9 +15,10 @@
 
     btnLambda.addEventListener('click', async () => {
       // Obtém o ID da página do GitHub
-      const pageId = '1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4';
+      const pageId = '1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4'
+
       // Chamada à API Lambda
-      const response = await fetch('https://lambda.us-east-1.amazonaws.com/2015-03-31/functions/pegaouser/invoke', {
+      const response = await fetch('https://tihukkrjfhry6tjzueh7hmcbzi0ycjbv.lambda-url.us-east-2.on.aws/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,3 +40,4 @@
   </script>
 </body>
 </html>
+
