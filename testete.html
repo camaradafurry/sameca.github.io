@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chamando função Lambda</title>
+  <title>Chamando função Lambda com Detalhes do Erro</title>
 </head>
 <body>
   <h1>Chamando função Lambda</h1>
@@ -15,7 +15,7 @@
 
     btnLambda.addEventListener('click', async () => {
       // Obtém o ID da página do GitHub
-      const pageID = '1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4'
+      const pageID = '1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4';
 
       // Chamada à API Lambda
       const response = await fetch('https://tihukkrjfhry6tjzueh7hmcbzi0ycjbv.lambda-url.us-east-2.on.aws/', {
@@ -28,21 +28,33 @@
           id: pageID,
         }),
         // 'no-cors' pode ser necessário para alguns ambientes, mas configure com cuidado.
-        mode: 'no-cors',
+        mode: 'cors',
+        cache: 'no-cache',
       });
 
-      // Verifique o status da resposta para indicar sucesso ou falha.
+      // Exibe informações básicas da resposta
+      console.log('Status:', response.status);
+      console.log('Headers:', response.headers);
+
+      // Trate o status da resposta para indicar sucesso ou falha.
       if (response.ok) {
         // Utilize a resposta da API.
         const data = await response.json();
-        console.log(data);
+        console.log('Resposta:', data);
       } else {
-        // Trate o erro da API.
-        const error = await response.text();
-        console.error('Erro:', error);
+        // Exibe detalhes do erro
+        const errorText = await response.text();
+        console.error('Erro:', response.status, errorText);
+
+        // Exibe detalhes adicionais do erro (se disponível)
+        try {
+          const errorData = JSON.parse(errorText);
+          console.error('Detalhes do Erro:', errorData);
+        } catch (e) {
+          console.error('Erro ao analisar detalhes do erro:', e);
+        }
       }
     });
   </script>
 </body>
 </html>
-
