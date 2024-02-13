@@ -23,7 +23,7 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: {'id':pageID},
+        body: JSON.stringify({'id': pageID}),
         mode: 'no-cors',
       });
 
