@@ -23,17 +23,23 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({'id': pageID}),
+        body: JSON.stringify({
+          // Certifique-se de que 'pageID' é um valor válido e não nulo.
+          id: pageID,
+        }),
+        // 'no-cors' pode ser necessário para alguns ambientes, mas configure com cuidado.
         mode: 'no-cors',
       });
 
-      // Tratamento da resposta
+      // Verifique o status da resposta para indicar sucesso ou falha.
       if (response.ok) {
+        // Utilize a resposta da API.
         const data = await response.json();
-        console.log('Dados da função Lambda:', data);
-        // Exiba os dados da função Lambda na página
+        console.log(data);
       } else {
-        console.error('Erro ao chamar a função Lambda:', response.statusText);
+        // Trate o erro da API.
+        const error = await response.text();
+        console.error('Erro:', error);
       }
     });
   </script>
