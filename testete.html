@@ -11,7 +11,7 @@
   <button id="btn-lambda">Chamar Lambda</button>
 
   <script>
-    const btnLambda = document.getElementById('btn-lambda');
+    const btnLambda = document.getElementById('btn-lambda');//
 
     btnLambda.addEventListener('click', async () => {
       try {
@@ -27,28 +27,6 @@
           body: JSON.stringify({ 'id': pageID }),  // Converte o objeto para uma string JSON
         });
 
-        // Exibe informações básicas da resposta
-        console.log('Status:', response.status);
-        console.log('Headers:', response.headers);
-
-        // Trate o status da resposta para indicar sucesso ou falha.
-        if (response.ok) {
-          // Utilize a resposta da API.
-          const data = await response.json();
-          console.log('Resposta:', data);
-        } else {
-          // Exibe detalhes do erro
-          const errorText = await response.text();
-          console.error('Erro:', response.status, errorText);
-
-          // Exibe detalhes adicionais do erro (se disponível)
-          try {
-            const errorData = JSON.parse(errorText);
-            console.error('Detalhes do Erro:', errorData);
-          } catch (e) {
-            console.error('Erro ao analisar detalhes do erro:', e);
-          }
-        }
       } catch (error) {
         console.error('Erro durante a chamada assíncrona:', error);
       }
