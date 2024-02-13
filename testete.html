@@ -15,8 +15,6 @@
 
     btnLambda.addEventListener('click', async () => {
       try {
-        // Obtém o ID da página do GitHub
-        const pageID = '1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4';
 
         // Chamada à API Lambda
         const response = await fetch('https://tssvso6yoq3rw6bhppn63agnae0dbsqw.lambda-url.us-east-2.on.aws/', {
@@ -24,7 +22,7 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ 'id': pageID }),  // Converte o objeto para uma string JSON
+          body: JSON.stringify({"id": "1cnB0IVc7v7j3WTKiSV0IjQOdXQBK97J4iS5-g2DCwD4"}),  // Converte o objeto para uma string JSON
         });
 
       } catch (error) {
