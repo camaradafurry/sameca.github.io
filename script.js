@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         let totalSusp=0;
         let totalConcl=0;
         let totalNL=0;
+        let totalAlt=0;
+        let totalEva=0;
+        let totalIna=0;
         let totalNovos=0
         dados.forEach((d)=>{
             console.log("d: "+d);
@@ -21,7 +24,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             totalSusp+=parseFloat(d[4]);
             totalConcl+=parseFloat(d[5]);
             totalNL+=parseFloat(d[6]);
-            totalNovos+=parseFloat(d[7]);
+            totalAlt+=parseFloat(d[7]);
+            totalEva+=parseFloat(d[8]);
+            totalIna+=parseFloat(d[9]);
+            totalNovos+=parseFloat(d[10]);
             console.log(totalEnc);                
         });
         document.getElementById('totalEnc').textContent = totalEnc;
@@ -30,8 +36,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('totalSusp').textContent = totalSusp;
         document.getElementById('totalConcl').textContent = totalConcl;
         document.getElementById('totalNL').textContent = totalNL;
+        document.getElementById('totalAlt').textContent = totalAlt;
+        document.getElementById('totalEva').textContent = totalEva;
+        document.getElementById('totalNIna').textContent = totalIna;
         document.getElementById('totalNovos').textContent = totalNovos;
-        const totalPaci = totalEnc + totalCont + totalAte + totalSusp + totalConcl + totalNL + totalNovos;
+        const totalPaci = totalEnc + totalCont + totalAte + totalSusp + totalConcl + totalNL + totalNovos+totalAlt+totalEva+totalIna;
         document.getElementById('totalPaci').textContent = totalPaci;
 
         
