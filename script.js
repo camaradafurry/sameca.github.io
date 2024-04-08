@@ -130,7 +130,7 @@ function atuChart() {
             totalEva+=parseFloat(d[8]);
             totalIna+=parseFloat(d[9]);
             totalNovos+=parseFloat(d[10]);
-            console.log(totalEnc);                
+            console.log("totalNovos: "+totalNovos);                
         });
         document.getElementById('totalEnc').textContent = totalEnc;
         document.getElementById('totalCont').textContent = totalCont;
