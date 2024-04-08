@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('totalEva').textContent = totalEva;
         document.getElementById('totalIna').textContent = totalIna;
         document.getElementById('totalNovos').textContent = totalNovos;
+        console.log(["total",totalEnc,totalCont,totalAte,totalSusp, totalConcl,totalNL,totalNovos,totalAlt,totalEva,totalIna])
         const totalPaci = totalEnc + totalCont + totalAte + totalSusp + totalConcl + totalNL + totalNovos+totalAlt+totalEva+totalIna;
         document.getElementById('totalPaci').textContent = totalPaci;
 
