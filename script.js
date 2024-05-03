@@ -1,5 +1,20 @@
 let dados; // Variável global para armazenar os dados
 let dadosPsi;
+var today = new Date();
+    var currentMonth = today.getMonth(); // Retorna o mês atual (0-11)
+    var currentYear = today.getFullYear(); // Retorna o ano atual (ex: 2024)
+
+    // Define o mês atual como selecionado
+    document.getElementById('endMonthPaci').selectedIndex = currentMonth;
+
+    // Define o ano atual como selecionado (se existir na lista)
+    var yearDropdown = document.getElementById('endYearPaci');
+    for (var i = 0; i < yearDropdown.options.length; i++) {
+        if (yearDropdown.options[i].value == currentYear) {
+            yearDropdown.selectedIndex = i;
+            break;
+        }
+    }
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
