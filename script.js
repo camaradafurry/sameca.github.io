@@ -7,41 +7,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         dados = await (await fetch(url)).json(); // Salva os dados na variável global
 
         let totalEnc = 0;
-        let totalCont = 0;
         let totalAte = 0;
-        let totalSusp=0;
         let totalConcl=0;
-        let totalNL=0;
-        let totalAlt=0;
-        let totalEva=0;
-        let totalIna=0;
         let totalNovos=0
         dados.forEach((d)=>{
             console.log("d: "+d);
             totalEnc+=parseFloat(d[1]);
-            totalCont+=parseFloat(d[2]);
-            totalAte+=parseFloat(d[3]);
-            totalSusp+=parseFloat(d[4]);
-            totalConcl+=parseFloat(d[5]);
-            totalNL+=parseFloat(d[6]);
-            totalAlt+=parseFloat(d[7]);
-            totalEva+=parseFloat(d[8]);
-            totalIna+=parseFloat(d[9]);
-            totalNovos+=parseFloat(d[10]);
+            totalAte+=parseFloat(d[2]);
+            totalConcl+=parseFloat(d[3]);
+            totalNovos+=parseFloat(d[4]);
             console.log(totalEnc);                
         });
         document.getElementById('totalEnc').textContent = totalEnc;
-        document.getElementById('totalCont').textContent = totalCont;
         document.getElementById('totalAte').textContent = totalAte;
-        document.getElementById('totalSusp').textContent = totalSusp;
         document.getElementById('totalConcl').textContent = totalConcl;
-        document.getElementById('totalNL').textContent = totalNL;
-        document.getElementById('totalAlt').textContent = totalAlt;
-        document.getElementById('totalEva').textContent = totalEva;
-        document.getElementById('totalIna').textContent = totalIna;
         document.getElementById('totalNovos').textContent = totalNovos;
-        console.log(["total",totalEnc,totalCont,totalAte,totalSusp, totalConcl,totalNL,totalNovos,totalAlt,totalEva,totalIna])
-        const totalPaci = totalEnc + totalCont + totalAte + totalSusp + totalConcl + totalNL + totalNovos+totalAlt+totalEva+totalIna;
+        console.log(["total",totalEnc,totalAte, totalConcl,totalNovos])
+        const totalPaci = totalEnc + totalAte + totalConcl + totalNovos;
         document.getElementById('totalPaci').textContent = totalPaci;
 
         
@@ -109,42 +91,24 @@ function atuChart() {
         new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
     });
     let totalEnc = 0;
-        let totalCont = 0;
-        let totalAte = 0;
-        let totalSusp=0;
-        let totalConcl=0;
-        let totalNL=0;
-        let totalAlt=0;
-        let totalEva=0;
-        let totalIna=0;
-        let totalNovos=0
-        dadosFiltrados.forEach((d)=>{
-            console.log("d: "+d);
-            totalEnc+=parseFloat(d[1]);
-            totalCont+=parseFloat(d[2]);
-            totalAte+=parseFloat(d[3]);
-            totalSusp+=parseFloat(d[4]);
-            totalConcl+=parseFloat(d[5]);
-            totalNL+=parseFloat(d[6]);
-            totalAlt+=parseFloat(d[7]);
-            totalEva+=parseFloat(d[8]);
-            totalIna+=parseFloat(d[9]);
-            totalNovos+=parseFloat(d[10]);
-            console.log("totalNovos: "+totalNovos);                
-        });
-        document.getElementById('totalEnc').textContent = totalEnc;
-        document.getElementById('totalCont').textContent = totalCont;
-        document.getElementById('totalAte').textContent = totalAte;
-        document.getElementById('totalSusp').textContent = totalSusp;
-        document.getElementById('totalConcl').textContent = totalConcl;
-        document.getElementById('totalNL').textContent = totalNL;
-        document.getElementById('totalAlt').textContent = totalAlt;
-        document.getElementById('totalEva').textContent = totalEva;
-        document.getElementById('totalIna').textContent = totalIna;
-        document.getElementById('totalNovos').textContent = totalNovos;
-        console.log(["total",totalEnc,totalCont,totalAte,totalSusp, totalConcl,totalNL,totalNovos,totalAlt,totalEva,totalIna])
-        const totalPaci = totalEnc + totalCont + totalAte + totalSusp + totalConcl + totalNL + totalNovos+totalAlt+totalEva+totalIna;
-        document.getElementById('totalPaci').textContent = totalPaci;
+    let totalAte = 0;
+    let totalConcl=0;
+    let totalNovos=0
+    dadosFiltrados.forEach((d)=>{
+        console.log("d: "+d);
+        totalEnc+=parseFloat(d[1]);
+        totalAte+=parseFloat(d[2]);
+        totalConcl+=parseFloat(d[3]);
+        totalNovos+=parseFloat(d[4]);
+        console.log("totalNovos: "+totalNovos);                
+    });
+    document.getElementById('totalEnc').textContent = totalEnc;
+    document.getElementById('totalAte').textContent = totalAte;
+    document.getElementById('totalConcl').textContent = totalConcl;
+    document.getElementById('totalNovos').textContent = totalNovos;
+    console.log(["total",totalEnc,totalAte, totalConcl,totalNovos])
+    const totalPaci = totalEnc + totalAte + totalConcl + totalNovos;
+    document.getElementById('totalPaci').textContent = totalPaci;
               
     drawChart(dadosFiltrados);
 
@@ -191,25 +155,19 @@ function atuChartPsi() {
 //fazendo o gráfico
 function drawChart(dadosFiltrados) {
     const dadosGra = dadosFiltrados.map((par) => {
-        return [mesAno(par[0]), par[1], par[2], par[3],par[4],par[5],par[6],par[7],par[8],par[9],par[10]];
+        return [mesAno(par[0]), par[1], par[2], par[3],par[4]];
     });
 
     let data = new google.visualization.DataTable();
     data.addColumn('string', 'Mês');
     data.addColumn('number', 'Encaminhados');
-    data.addColumn('number', 'Em Contato');
     data.addColumn('number', 'Em Atendimento');
-    data.addColumn('number', 'Em Suspenso');
     data.addColumn('number', 'Concluídos');
-    data.addColumn('number', 'Não Localizados');
-    data.addColumn('number', 'Alta');
-    data.addColumn('number', 'Evasão');
-    data.addColumn('number', 'Inadimplente');
     data.addColumn('number', 'Novos');
 
     // Adiciona as linhas aos dados
     dadosGra.forEach((linha) => {
-        data.addRow([linha[0], linha[1], linha[2], linha[3],linha[4],linha[5],linha[6],linha[7],linha[8],linha[9],linha[10]]);
+        data.addRow([linha[0], linha[1], linha[2], linha[3],linha[4]]);
     });
 
     let options = {
