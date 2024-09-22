@@ -170,7 +170,7 @@ function drawChart(dadosFiltrados) {
     data.addColumn('number', 'Não Localizados');
     data.addColumn('number', 'Em Atendimento');
     data.addColumn('number', 'Concluídos');
-    data.addColumn('number', 'Novos');
+    data.addColumn('number', 'Esperando Encaminhamento');
 
     // Adiciona as linhas aos dados
     dadosGra.forEach((linha) => {
