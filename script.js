@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         dados.forEach((d)=>{
             console.log("d: "+d);
             totalEnc+=parseFloat(d[1]);
-            totalNL+==parseFloat(d[2]);
+            totalNL+=parseFloat(d[2]);
             totalAte+=parseFloat(d[3]);
             totalConcl+=parseFloat(d[4]);
             totalNovos+=parseFloat(d[5]);
