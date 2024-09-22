@@ -7,23 +7,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         dados = await (await fetch(url)).json(); // Salva os dados na variável global
 
         let totalEnc = 0;
+        let totalNL=0;
         let totalAte = 0;
         let totalConcl=0;
         let totalNovos=0
         dados.forEach((d)=>{
             console.log("d: "+d);
             totalEnc+=parseFloat(d[1]);
-            totalAte+=parseFloat(d[2]);
-            totalConcl+=parseFloat(d[3]);
-            totalNovos+=parseFloat(d[4]);
+            totalNL+==parseFloat(d[2]);
+            totalAte+=parseFloat(d[3]);
+            totalConcl+=parseFloat(d[4]);
+            totalNovos+=parseFloat(d[5]);
             console.log(totalEnc);                
         });
         document.getElementById('totalEnc').textContent = totalEnc;
+        document.getElementById('totalNL').textContent = totalNL;
         document.getElementById('totalAte').textContent = totalAte;
         document.getElementById('totalConcl').textContent = totalConcl;
         document.getElementById('totalNovos').textContent = totalNovos;
         console.log(["total",totalEnc,totalAte, totalConcl,totalNovos])
-        const totalPaci = totalEnc + totalAte + totalConcl + totalNovos;
+        const totalPaci = totalEnc + totalNL + totalAte + totalConcl + totalNovos;
         document.getElementById('totalPaci').textContent = totalPaci;
 
         
@@ -91,18 +94,21 @@ function atuChart() {
         new Date(data[0]) <= new Date(endYearPaci, endMonthPaci, 1);
     });
     let totalEnc = 0;
+    let totalNL = 0;
     let totalAte = 0;
     let totalConcl=0;
     let totalNovos=0
     dadosFiltrados.forEach((d)=>{
         console.log("d: "+d);
         totalEnc+=parseFloat(d[1]);
-        totalAte+=parseFloat(d[2]);
-        totalConcl+=parseFloat(d[3]);
-        totalNovos+=parseFloat(d[4]);
+        totalNL+=parseFloat(d[2]);
+        totalAte+=parseFloat(d[3]);
+        totalConcl+=parseFloat(d[4]);
+        totalNovos+=parseFloat(d[5]);
         console.log("totalNovos: "+totalNovos);                
     });
     document.getElementById('totalEnc').textContent = totalEnc;
+    document.getElementById('totalNL').textContent = totalNL;
     document.getElementById('totalAte').textContent = totalAte;
     document.getElementById('totalConcl').textContent = totalConcl;
     document.getElementById('totalNovos').textContent = totalNovos;
@@ -155,19 +161,20 @@ function atuChartPsi() {
 //fazendo o gráfico
 function drawChart(dadosFiltrados) {
     const dadosGra = dadosFiltrados.map((par) => {
-        return [mesAno(par[0]), par[1], par[2], par[3], par[4]];
+        return [mesAno(par[0]), par[1], par[2], par[3], par[4], par[5]];
     });
 
     let data = new google.visualization.DataTable();
     data.addColumn('string', 'Mês');
     data.addColumn('number', 'Encaminhados');
+    data.addColumn('number', 'Não Localizados');
     data.addColumn('number', 'Em Atendimento');
     data.addColumn('number', 'Concluídos');
     data.addColumn('number', 'Novos');
 
     // Adiciona as linhas aos dados
     dadosGra.forEach((linha) => {
-        data.addRow([linha[0], linha[1], linha[2], linha[3], linha[4]]);
+        data.addRow([linha[0], linha[1], linha[2], linha[3], linha[4], linha[5]);
     });
 
     let options = {
@@ -194,7 +201,7 @@ function drawChart(dadosFiltrados) {
 //fazendo o gráfico psícologos
 function drawChartPsi(dadosPsi) {
     const dadosGra = dadosPsi.map((par) => {
-        return [mesAno(par[0]), par[1], par[2], par[3], par[4]];
+        return [mesAno(par[0]), par[1], par[2], par[3]];
     });
 
     let data = new google.visualization.DataTable();
@@ -205,7 +212,7 @@ function drawChartPsi(dadosPsi) {
 
     // Adiciona as linhas aos dados
     dadosGra.forEach((linha) => {
-        data.addRow([linha[0], linha[1], linha[2], linha[3], linha[4]]);
+        data.addRow([linha[0], linha[1], linha[2], linha[3]]);
     });
 
     let options = {
