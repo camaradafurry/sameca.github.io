@@ -112,8 +112,8 @@ function atuChart() {
     document.getElementById('totalAte').textContent = totalAte;
     document.getElementById('totalConcl').textContent = totalConcl;
     document.getElementById('totalNovos').textContent = totalNovos;
-    console.log(["total",totalEnc,totalAte, totalConcl,totalNovos])
-    const totalPaci = totalEnc + totalAte + totalConcl + totalNovos;
+    console.log(["total",totalEnc,totalNL,totalAte, totalConcl,totalNovos])
+    const totalPaci = totalEnc +totalNL + totalAte + totalConcl + totalNovos;
     document.getElementById('totalPaci').textContent = totalPaci;
               
     drawChart(dadosFiltrados);
