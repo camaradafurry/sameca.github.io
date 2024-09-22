@@ -174,7 +174,7 @@ function drawChart(dadosFiltrados) {
 
     // Adiciona as linhas aos dados
     dadosGra.forEach((linha) => {
-        data.addRow([linha[0], linha[1], linha[2], linha[3], linha[4], linha[5]);
+        data.addRow([linha[0], linha[1], linha[2], linha[3], linha[4], linha[5]]);
     });
 
     let options = {
