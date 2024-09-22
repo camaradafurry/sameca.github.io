@@ -194,7 +194,7 @@ function drawChart(dadosFiltrados) {
 //fazendo o gráfico psícologos
 function drawChartPsi(dadosPsi) {
     const dadosGra = dadosPsi.map((par) => {
-        return [mesAno(par[0]), par[1], par[2], par[3]];
+        return [mesAno(par[0]), par[1], par[2], par[3], par[4]];
     });
 
     let data = new google.visualization.DataTable();
@@ -205,7 +205,7 @@ function drawChartPsi(dadosPsi) {
 
     // Adiciona as linhas aos dados
     dadosGra.forEach((linha) => {
-        data.addRow([linha[0], linha[1], linha[2], linha[3]]);
+        data.addRow([linha[0], linha[1], linha[2], linha[3], linha[4]]);
     });
 
     let options = {
