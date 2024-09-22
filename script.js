@@ -155,7 +155,7 @@ function atuChartPsi() {
 //fazendo o gráfico
 function drawChart(dadosFiltrados) {
     const dadosGra = dadosFiltrados.map((par) => {
-        return [mesAno(par[0]), par[1], par[2], par[3],par[4]];
+        return [mesAno(par[0]), par[1], par[2], par[3], par[4]];
     });
 
     let data = new google.visualization.DataTable();
@@ -167,7 +167,7 @@ function drawChart(dadosFiltrados) {
 
     // Adiciona as linhas aos dados
     dadosGra.forEach((linha) => {
-        data.addRow([linha[0], linha[1], linha[2], linha[3],linha[4]]);
+        data.addRow([linha[0], linha[1], linha[2], linha[3], linha[4]]);
     });
 
     let options = {
